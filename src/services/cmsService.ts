@@ -70,6 +70,9 @@ export interface WebsiteSettings {
   linkedin_url?: string;
   copyright_text?: string;
   footerLayout?: 'standard' | 'reversed';
+  footerConfig?: any;
+  bannerConfig?: any;
+  cursorConfig?: any;
 }
 
 export interface NavigationItem {

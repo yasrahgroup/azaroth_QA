@@ -1,15 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Linkedin, 
-  Twitter, 
-  Facebook, 
-  Instagram, 
-  Youtube,
-  ShieldCheck,
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Linkedin,
   Cookie
 } from 'lucide-react';
 import logoImg from '../../assets/Logo.png';
@@ -24,9 +19,129 @@ export const Footer: React.FC = () => {
   const copyright = settings?.copyright_text || 'All rights reserved © 2026 Azaroth Tech-Hive Inc';
   const isReversed = (settings?.footerLayout || 'reversed') === 'reversed';
 
-  // 1. Brand Logo & Tagline Column
+  // Social Icons Component
+  const socialIcons = (
+    <div style={{ marginTop: '1.25rem' }}>
+      <div style={{ fontSize: '0.8125rem', color: '#CBD5E1', fontWeight: 600, marginBottom: '0.75rem' }}>
+        Follow Us
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <a
+          href={settings?.linkedinUrl || "https://linkedin.com"}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="LinkedIn"
+          style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#CBD5E1',
+            transition: 'all 160ms',
+          }}
+          className="hover:border-rose-400 hover:text-rose-400"
+        >
+          <Linkedin size={15} />
+        </a>
+{/* 
+        <a
+          href={settings?.twitterUrl || "https://x.com"}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="X (formerly Twitter)"
+          style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#CBD5E1',
+            transition: 'all 160ms',
+          }}
+          className="hover:border-rose-400 hover:text-rose-400"
+        >
+          <Twitter size={15} />
+        </a>
+
+        <a
+          href={(settings as any)?.facebookUrl || "https://facebook.com"}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Facebook"
+          style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#CBD5E1',
+            transition: 'all 160ms',
+          }}
+          className="hover:border-rose-400 hover:text-rose-400"
+        >
+          <Facebook size={15} />
+        </a>
+
+        <a
+          href={(settings as any)?.instagramUrl || "https://instagram.com"}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Instagram"
+          style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#CBD5E1',
+            transition: 'all 160ms',
+          }}
+          className="hover:border-rose-400 hover:text-rose-400"
+        >
+          <Instagram size={15} />
+        </a>
+
+        <a
+          href={(settings as any)?.youtubeUrl || "https://youtube.com"}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="YouTube"
+          style={{
+            width: '32px',
+            height: '32px',
+            borderRadius: '50%',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#CBD5E1',
+            transition: 'all 160ms',
+          }}
+          className="hover:border-rose-400 hover:text-rose-400"
+        >
+          <Youtube size={15} />
+        </a> */}
+      </div>
+    </div>
+  );
+
+  // 1. Brand Logo, Tagline & Follow Us Column
   const brandColumn = (
-    <div key="col-brand" style={{ maxWidth: '280px' }}>
+    <div key="col-brand" style={{ maxWidth: '300px' }}>
       <Link
         to="/"
         style={{
@@ -63,7 +178,7 @@ export const Footer: React.FC = () => {
             style={{
               fontSize: '0.625rem',
               fontWeight: 700,
-              color: 'var(--color-brand-gold, #F59E0B)',
+              color: '#D3163C',
               letterSpacing: '0.22em',
               textTransform: 'uppercase',
             }}
@@ -84,10 +199,12 @@ export const Footer: React.FC = () => {
       >
         Build &middot; Innovate &middot; Grow
       </div>
+
+      {socialIcons}
     </div>
   );
 
-  // 2. Quick Links Column
+  // 2. Quick Links Column (Updated with Explore Products & Explore Services per diagram)
   const quickLinksColumn = (
     <div key="col-quicklinks">
       <h4
@@ -102,79 +219,26 @@ export const Footer: React.FC = () => {
       </h4>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <li>
-          <Link to="/" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Home
+          <Link to="/products" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-rose-400">
+            Explore Products
           </Link>
         </li>
         <li>
-          <Link to="/services" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Services
+          <Link to="/services" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-rose-400">
+            Explore Services
           </Link>
         </li>
         <li>
-          <Link to="/about" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="/portfolio" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Projects
-          </Link>
-        </li>
-        <li>
-          <Link to="/connect-with-us" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Contact
+          <Link to="/resource-hub" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-rose-400">
+            Resource Hub
           </Link>
         </li>
       </ul>
     </div>
   );
 
-  // 3. Our Services Column
-  const servicesColumn = (
-    <div key="col-services">
-      <h4
-        style={{
-          color: '#FFFFFF',
-          fontSize: '0.9375rem',
-          fontWeight: 700,
-          marginBottom: '1.25rem',
-        }}
-      >
-        Our Services
-      </h4>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        <li>
-          <Link to="/services#web-development" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Web Development
-          </Link>
-        </li>
-        <li>
-          <Link to="/services#mobile-applications" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Mobile Applications
-          </Link>
-        </li>
-        <li>
-          <Link to="/services#cloud-solutions" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            Cloud Solutions
-          </Link>
-        </li>
-        <li>
-          <Link to="/services#it-consulting" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            IT Consulting
-          </Link>
-        </li>
-        <li>
-          <Link to="/services#ui-ux-design" style={{ color: '#94A3B8', textDecoration: 'none', fontSize: '0.875rem', transition: 'color 160ms' }} className="hover:text-amber-400">
-            UI/UX Design
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
-
-  // 4. Contact Us & Follow Us Column
-  const contactSocialColumn = (
+  // 3. Contact Us Column
+  const contactColumn = (
     <div key="col-contact">
       <h4
         style={{
@@ -187,151 +251,33 @@ export const Footer: React.FC = () => {
         Contact Us
       </h4>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem', marginBottom: '1.75rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem', fontSize: '0.875rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          <Phone size={15} style={{ color: 'var(--color-brand-gold, #F59E0B)', flexShrink: 0 }} />
+          <Phone size={15} style={{ color: '#D3163C', flexShrink: 0 }} />
           <a href={`tel:${phone.replace(/\s+/g, '')}`} style={{ color: '#94A3B8', textDecoration: 'none' }} className="hover:text-white">
             {phone}
           </a>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          <Mail size={15} style={{ color: 'var(--color-brand-gold, #F59E0B)', flexShrink: 0 }} />
+          <Mail size={15} style={{ color: '#D3163C', flexShrink: 0 }} />
           <a href={`mailto:${email}`} style={{ color: '#94A3B8', textDecoration: 'none' }} className="hover:text-white">
             {email}
           </a>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          <MapPin size={15} style={{ color: 'var(--color-brand-gold, #F59E0B)', flexShrink: 0 }} />
-          <span style={{ color: '#94A3B8' }}>{address}</span>
-        </div>
-      </div>
-
-      {/* Follow Us Social Icons matching reference */}
-      <div>
-        <div style={{ fontSize: '0.8125rem', color: '#CBD5E1', fontWeight: 600, marginBottom: '0.75rem' }}>
-          Follow Us
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <a
-            href={settings?.linkedinUrl || "https://linkedin.com"}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#CBD5E1',
-              transition: 'all 160ms',
-            }}
-            className="hover:border-amber-400 hover:text-amber-400"
-          >
-            <Linkedin size={15} />
-          </a>
-
-          <a
-            href={settings?.twitterUrl || "https://x.com"}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="X (formerly Twitter)"
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#CBD5E1',
-              transition: 'all 160ms',
-            }}
-            className="hover:border-amber-400 hover:text-amber-400"
-          >
-            <Twitter size={15} />
-          </a>
-
-          <a
-            href={(settings as any)?.facebookUrl || "https://facebook.com"}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Facebook"
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#CBD5E1',
-              transition: 'all 160ms',
-            }}
-            className="hover:border-amber-400 hover:text-amber-400"
-          >
-            <Facebook size={15} />
-          </a>
-
-          <a
-            href={(settings as any)?.instagramUrl || "https://instagram.com"}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram"
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#CBD5E1',
-              transition: 'all 160ms',
-            }}
-            className="hover:border-amber-400 hover:text-amber-400"
-          >
-            <Instagram size={15} />
-          </a>
-
-          <a
-            href={(settings as any)?.youtubeUrl || "https://youtube.com"}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="YouTube"
-            style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              backgroundColor: 'rgba(255, 255, 255, 0.05)',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#CBD5E1',
-              transition: 'all 160ms',
-            }}
-            className="hover:border-amber-400 hover:text-amber-400"
-          >
-            <Youtube size={15} />
-          </a>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.625rem' }}>
+          <MapPin size={15} style={{ color: '#D3163C', flexShrink: 0, marginTop: '0.2rem' }} />
+          <span style={{ color: '#94A3B8', lineHeight: 1.5 }}>{address}</span>
         </div>
       </div>
     </div>
   );
 
-  // Dynamic Column Distribution based on CMS footerLayout configuration
+  // 3-Column Distribution matching user diagram: [Contact Us, Quick Links, Brand with Follow Us]
   const footerColumns = isReversed
-    ? [contactSocialColumn, servicesColumn, quickLinksColumn, brandColumn]
-    : [brandColumn, quickLinksColumn, servicesColumn, contactSocialColumn];
+    ? [contactColumn, quickLinksColumn, brandColumn]
+    : [brandColumn, quickLinksColumn, contactColumn];
 
   return (
     <footer
@@ -352,7 +298,7 @@ export const Footer: React.FC = () => {
           left: '20%',
           width: '500px',
           height: '250px',
-          background: 'radial-gradient(ellipse at center, var(--color-primary-glow, rgba(24, 24, 27, 0.2)) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(122, 12, 22, 0.2) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -363,25 +309,25 @@ export const Footer: React.FC = () => {
           right: '20%',
           width: '450px',
           height: '220px',
-          background: 'radial-gradient(ellipse at center, var(--color-brand-gold-light, rgba(245, 158, 11, 0.08)) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(211, 22, 60, 0.08) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
 
       <div className="container" style={{ paddingTop: '4.5rem', paddingBottom: '2.5rem', position: 'relative', zIndex: 1 }}>
-        {/* 4 Footer Columns (Reversible via CMS) */}
+        {/* 3 Columns matching user markup */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2.5rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '3rem',
             marginBottom: '3.5rem',
           }}
         >
           {footerColumns}
         </div>
 
-        {/* Bottom Bar: Copyright, Legal, Cookies & Direct Admin Portal Access */}
+        {/* Bottom Bar: Copyright, Legal & Cookies (Admin Portal pill removed per diagram) */}
         <div
           style={{
             paddingTop: '1.75rem',
@@ -400,7 +346,7 @@ export const Footer: React.FC = () => {
             {copyright}
           </div>
 
-          {/* Privacy Policy, Cookies & Admin Portal Access */}
+          {/* Privacy Policy & Cookies */}
           <div
             style={{
               display: 'flex',
@@ -416,7 +362,7 @@ export const Footer: React.FC = () => {
                 textDecoration: 'none',
                 transition: 'color 160ms ease',
               }}
-              className="hover:text-amber-400"
+              className="hover:text-rose-400"
             >
               Privacy Policy
             </Link>
@@ -433,36 +379,10 @@ export const Footer: React.FC = () => {
                 gap: '0.35rem',
                 transition: 'color 160ms ease',
               }}
-              className="hover:text-amber-400"
+              className="hover:text-rose-400"
             >
               <Cookie size={13} style={{ opacity: 0.7 }} />
               <span>Cookies</span>
-            </Link>
-
-            <span style={{ color: 'rgba(255, 255, 255, 0.15)' }}>&bull;</span>
-
-            {/* Direct Admin Portal Access Link */}
-            <Link
-              to="/admin/login"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                color: 'var(--color-brand-gold, #F59E0B)',
-                backgroundColor: 'rgba(245, 158, 11, 0.08)',
-                border: '1px solid rgba(245, 158, 11, 0.25)',
-                padding: '0.25rem 0.65rem',
-                borderRadius: '9999px',
-                textDecoration: 'none',
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                transition: 'all 160ms ease',
-              }}
-              className="hover:bg-amber-500 hover:text-slate-950"
-              title="Access CMS Control Center"
-            >
-              <ShieldCheck size={13} />
-              <span>Admin Portal</span>
             </Link>
           </div>
         </div>

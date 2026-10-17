@@ -3,11 +3,22 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Activity, ShoppingBag, GraduationCap, HeartPulse } from 'lucide-react';
 import { productsCatalog } from '../../data/productsData';
 import { AnimatedImage } from '../common/AnimatedImage';
+import { ProductStatusBadge } from '../common/ProductStatusBadge';
 import { useCMS } from '../../context/CMSContext';
 
 export const ProductsSection: React.FC = () => {
   const { products: cmsProducts } = useCMS();
-  const displayProducts = (cmsProducts && cmsProducts.length > 0) ? cmsProducts : productsCatalog;
+  const displayProducts = productsCatalog.map((catalogProd) => {
+    const cmsMatch = (cmsProducts || []).find((cp: any) => cp.slug === catalogProd.slug || cp.id === catalogProd.id);
+    return {
+      ...catalogProd,
+      title: cmsMatch?.title || cmsMatch?.name || catalogProd.name,
+      status: catalogProd.status,
+      statusColor: catalogProd.statusColor,
+      badge: catalogProd.badge,
+      shortDescription: cmsMatch?.shortDescription || (cmsMatch as any)?.short_description || catalogProd.shortDescription,
+    };
+  });
   const getProductIcon = (iconName?: string) => {
     switch (iconName) {
       case 'Activity':
@@ -81,7 +92,7 @@ export const ProductsSection: React.FC = () => {
             Enterprise Software{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-brand-gold, #F59E0B) 100%)',
+                background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -148,19 +159,11 @@ export const ProductsSection: React.FC = () => {
                     >
                       {getProductIcon(productIconName)}
                     </div>
-                    <span
-                      style={{
-                        fontSize: '0.75rem',
-                        fontWeight: 700,
-                        padding: '0.3rem 0.75rem',
-                        borderRadius: '9999px',
-                        backgroundColor: (product.status === 'Under Development' || product.status === 'DRAFT') ? '#FEF3C7' : '#ECFDF5',
-                        color: (product.status === 'Under Development' || product.status === 'DRAFT') ? '#B45309' : '#047857',
-                        border: `1px solid ${(product.status === 'Under Development' || product.status === 'DRAFT') ? '#FDE68A' : '#A7F3D0'}`,
-                      }}
-                    >
-                      {(product.status === 'Under Development' || product.status === 'DRAFT') ? 'Under Development' : 'Live'}
-                    </span>
+                    <ProductStatusBadge
+                      status={product.status || 'Under Development'}
+                      colorScheme={product.statusColor}
+                      size="sm"
+                    />
                   </div>
 
                   <h3
@@ -187,24 +190,24 @@ export const ProductsSection: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Action Button: "Explore More" */}
+                {/* Action Button: "Explore Platform" linking to /products */}
                 <div style={{ paddingTop: '1rem', borderTop: '1px solid var(--color-border, #E0E7FF)' }}>
                   <Link
-                    to={`/products/${product.slug}`}
+                    to="/products"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.5rem',
-                      color: 'var(--color-primary, #18181B)',
-                      fontWeight: 600,
+                      color: '#99152B',
+                      fontWeight: 700,
                       fontSize: '0.9375rem',
                       textDecoration: 'none',
                       transition: 'all 150ms ease-out',
                     }}
                     className="hover:gap-3"
-                    aria-label={`Explore more about ${productName}`}
+                    aria-label={`Explore ${productName} in platform catalog`}
                   >
-                    <span>Explore More</span>
+                    <span>Explore Products</span>
                     <ArrowRight size={15} aria-hidden="true" />
                   </Link>
                 </div>
@@ -221,17 +224,17 @@ export const ProductsSection: React.FC = () => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.625rem',
-              padding: '0.75rem 1.75rem',
+              padding: '0.85rem 2rem',
               borderRadius: '9999px',
-              backgroundColor: 'var(--color-primary-button, #18181B)',
+              background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
               color: '#FFFFFF',
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: '0.9375rem',
               textDecoration: 'none',
-              boxShadow: 'var(--shadow-primary-button, 0 4px 14px rgba(24, 24, 27, 0.22))',
+              boxShadow: '0 4px 18px rgba(184, 15, 46, 0.35)',
               transition: 'all 180ms ease-out',
             }}
-            className="hover:opacity-90"
+            className="hover:opacity-95 hover:scale-[1.02]"
           >
             <span>View Complete Platform Catalog</span>
             <ArrowRight size={16} aria-hidden="true" />

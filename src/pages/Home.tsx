@@ -5,8 +5,6 @@ import { FeaturedSolutions } from '../components/home/FeaturedSolutions';
 import { AboutSection } from '../components/home/AboutSection';
 import { IndustryExpertise } from '../components/home/IndustryExpertise';
 import { StrategicSolutions } from '../components/home/StrategicSolutions';
-import { Testimonials } from '../components/home/Testimonials';
-import { ProcessSection } from '../components/home/ProcessSection';
 import { BlogSection } from '../components/home/BlogSection';
 import { FAQSection } from '../components/home/FAQSection';
 import { FinalCTA } from '../components/home/FinalCTA';
@@ -29,28 +27,32 @@ export const Home: React.FC = () => {
         description={settings.metaDescription || "Azaroth Tech-Hive architects mission-critical digital systems, resilient microservice ecosystems, high-availability software platforms, and dedicated engineering pods for global enterprises."}
         canonicalPath="/"
       />
-      {/* 1. Hero banner matching reference */}
+      {/* 1. Hero Banner */}
       <Hero />
 
-      {/* 2. Comprehensive Digital Solutions (Our Services) */}
-      {isModuleEnabled('services') && <FeaturedSolutions />}
-
-      {/* 3. Turning Ideas into Digital Reality (About Azaroth Techhive) */}
+      {/* 2. About Us */}
       {isModuleEnabled('about') && <AboutSection />}
 
-      {/* 4. Strategic Solutions & Featured Case Studies (Featured Projects) */}
+      {/* 3. Our Services */}
+      {isModuleEnabled('services') && <FeaturedSolutions />}
+
+      {/* 4. Software Platforms */}
+      {isModuleEnabled('products') && <ProductsSection />}
+
+      {/* 5. Featured Product Slider */}
       {isModuleEnabled('portfolio') && <StrategicSolutions />}
 
-      {/* 5. Client Partnerships & Perspectives (Testimonials) */}
-      {isModuleEnabled('testimonials') && <Testimonials />}
-
-      {/* Secondary Modular Capabilities (Configurable via Admin CMS) */}
-      {isModuleEnabled('products') && <ProductsSection />}
+      {/* 6. Industrial Expertise */}
       <IndustryExpertise />
-      {isModuleEnabled('delivery-framework') && <ProcessSection />}
+
+      {/* 7. Resource Hub */}
       {isModuleEnabled('insights') && <BlogSection />}
+
+      {/* 8. FAQ */}
       <FAQSection />
-      {(isModuleEnabled('connect') || isModuleEnabled('rfq')) && <FinalCTA />}
+
+      {/* Final CTA Portal */}
+      {isModuleEnabled('connect') && <FinalCTA />}
     </div>
   );
 };

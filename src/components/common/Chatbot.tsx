@@ -27,12 +27,10 @@ export const Chatbot: React.FC = () => {
   const botDisplayRole = chatbotConfig?.botRole || 'Automated engineering assistant';
   const defaultWelcome = chatbotConfig?.welcomeMessage || "Hello! I'm the automated Azaroth site guide. Ask me about our platforms, engineering services or how to reach the team.";
   const quickPromptsList = chatbotConfig?.quickPrompts && chatbotConfig.quickPrompts.length > 0
-    ? chatbotConfig.quickPrompts
-    : ['Our Platforms', 'Engineering Services', 'Request a Quote', 'Connect With Us'];
+    ? chatbotConfig.quickPrompts.filter(p => !p.toLowerCase().includes('rfq') && !p.toLowerCase().includes('quote'))
+    : ['Explore Products', 'Explore Services', 'Our Portfolio', 'Connect With Us'];
   const supportEmail = chatbotConfig?.supportEmail || settings?.supportEmail || 'hello@azaroth-techhive.com';
   const supportPhone = chatbotConfig?.supportPhone || settings?.phone || '+91 6379480931';
-  const primaryColor = chatbotConfig?.primaryColor || 'var(--color-primary-button, #18181B)';
-  const secondaryColor = chatbotConfig?.secondaryColor || 'var(--color-brand-gold, #F59E0B)';
 
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -97,31 +95,31 @@ export const Chatbot: React.FC = () => {
 
     if (lowerMessage.includes('product') || lowerMessage.includes('platform')) {
       return {
-        text: 'We offer 3 enterprise software platforms: Fitness Management System (FMS), Omnichannel Commerce Platform, and Learning Management Platform (LMP). You can explore them on our Products page.',
+        text: 'We offer enterprise software platforms including Fitness Management System (FMS), Omnichannel Commerce Platform, and Learning Management Platform (LMP). You can explore them on our Products page.',
         buttons: [{ label: 'Explore Products', action: '/products' }],
       };
     }
     if (lowerMessage.includes('service') || lowerMessage.includes('consulting') || lowerMessage.includes('engineering')) {
       return {
-        text: 'We provide comprehensive software engineering services including Digital Transformation, Strategic Consulting, On-Demand Workforce Solutions, and Business Process Management.',
+        text: 'We provide comprehensive software engineering services including Full-Stack Web Development, Native & Cross-Platform Mobile Apps, Cloud & DevOps Solutions, and Strategic Consulting.',
         buttons: [{ label: 'Explore Services', action: '/services' }],
       };
     }
     if (lowerMessage.includes('quote') || lowerMessage.includes('pricing') || lowerMessage.includes('cost') || lowerMessage.includes('rfq')) {
       return {
-        text: 'For pricing and tailored proposals, please use our Request for Quote form. Our solutions team will review your requirements and provide an estimate.',
-        buttons: [{ label: 'Request a Quote', action: '/request-for-quote' }],
+        text: 'For project inquiries, tailored architectures, and enterprise estimates, please connect with our solutions team directly.',
+        buttons: [{ label: 'Connect With Us', action: '/connect-with-us' }],
       };
     }
     if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('reach')) {
       return {
-        text: `You can reach us directly at ${supportEmail} or call ${supportPhone}. You can also connect via our Connect page.`,
+        text: `You can reach us directly at ${supportEmail} or call ${supportPhone}. You can also connect via our consultation portal.`,
         buttons: [{ label: 'Connect With Us', action: '/connect-with-us' }],
       };
     }
     if (lowerMessage.includes('about') || lowerMessage.includes('company') || lowerMessage.includes('who')) {
       return {
-        text: 'Azaroth Tech-Hive engineers, evolves, and sustains intelligent software solutions, delivering end-to-end engineering excellence across Chennai and global enterprises.',
+        text: 'Azaroth Tech-Hive engineers, evolves, and sustains intelligent software solutions, delivering end-to-end engineering excellence across global enterprises.',
         buttons: [{ label: 'About Us', action: '/about' }],
       };
     }
@@ -200,7 +198,7 @@ export const Chatbot: React.FC = () => {
 
   return (
     <>
-      {/* Floating Chat Button (Theme Driven) */}
+      {/* Floating Chat Button (Theme Driven - Crimson Red) */}
       {!isOpen && (
         <button
           ref={launchButtonRef}
@@ -213,27 +211,29 @@ export const Chatbot: React.FC = () => {
             width: '3.5rem',
             height: '3.5rem',
             borderRadius: '50%',
-            background: primaryColor,
+            background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
             color: '#FFFFFF',
-            border: `2px solid ${secondaryColor}`,
+            border: '2px solid rgba(255, 255, 255, 0.25)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: 'var(--shadow-primary-button, 0 6px 20px rgba(24, 24, 27, 0.4))',
+            boxShadow: '0 8px 24px rgba(184, 15, 46, 0.45)',
             transition: 'all 200ms cubic-bezier(0.16, 1, 0.3, 1)',
             zIndex: 1000,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.08)';
-            e.currentTarget.style.boxShadow = `0 8px 25px rgba(24, 24, 27, 0.55), 0 0 15px ${secondaryColor}66`;
+            e.currentTarget.style.background = 'linear-gradient(135deg, #99152B 0%, #D3163C 50%, #F02B4F 100%)';
+            e.currentTarget.style.boxShadow = '0 12px 30px rgba(184, 15, 46, 0.65)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = 'var(--shadow-primary-button, 0 6px 20px rgba(24, 24, 27, 0.4))';
+            e.currentTarget.style.background = 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(184, 15, 46, 0.45)';
           }}
         >
-          <MessageSquare size={20} style={{ color: '#F8FAFC' }} aria-hidden="true" />
+          <MessageSquare size={20} style={{ color: '#FFFFFF' }} aria-hidden="true" />
         </button>
       )}
 
@@ -252,8 +252,8 @@ export const Chatbot: React.FC = () => {
             maxHeight: isMinimized ? 'auto' : '600px',
             backgroundColor: '#FFFFFF',
             borderRadius: '16px',
-            boxShadow: '0 16px 48px rgba(0, 0, 0, 0.18), 0 0 1px rgba(24, 24, 27, 0.3)',
-            border: `1px solid ${secondaryColor}44`,
+            boxShadow: '0 20px 50px rgba(15, 23, 42, 0.25), 0 0 1px rgba(122, 12, 22, 0.4)',
+            border: '1px solid #FFE4E6',
             zIndex: 1000,
             display: 'flex',
             flexDirection: 'column',
@@ -261,15 +261,15 @@ export const Chatbot: React.FC = () => {
             transition: 'all 180ms ease-out',
           }}
         >
-          {/* Header in Assistant Theme Colors */}
+          {/* Header in Crimson Red Theme Gradient */}
           <div
             style={{
-              background: `linear-gradient(135deg, ${primaryColor} 0%, #09090B 100%)`,
+              background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
               padding: '1rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              borderBottom: `2px solid ${secondaryColor}`,
+              borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -288,7 +288,7 @@ export const Chatbot: React.FC = () => {
                 <div id="chat-assistant-title" style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '0.9375rem' }}>
                   {botDisplayName}
                 </div>
-                <div style={{ color: secondaryColor, fontSize: '0.75rem', fontWeight: 600 }}>
+                <div style={{ color: '#FFE4E6', fontSize: '0.75rem', fontWeight: 500 }}>
                   {botDisplayRole}
                 </div>
               </div>
@@ -302,7 +302,7 @@ export const Chatbot: React.FC = () => {
                   height: '2rem',
                   borderRadius: '8px',
                   border: 'none',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
                   color: '#FFFFFF',
                   cursor: 'pointer',
                   display: 'flex',
@@ -311,10 +311,10 @@ export const Chatbot: React.FC = () => {
                   transition: 'background-color 180ms ease-out',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
                 }}
               >
                 {isMinimized ? <Maximize2 size={16} aria-hidden="true" /> : <Minimize2 size={16} aria-hidden="true" />}
@@ -330,7 +330,7 @@ export const Chatbot: React.FC = () => {
                   height: '2rem',
                   borderRadius: '8px',
                   border: 'none',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
                   color: '#FFFFFF',
                   cursor: 'pointer',
                   display: 'flex',
@@ -339,10 +339,10 @@ export const Chatbot: React.FC = () => {
                   transition: 'background-color 180ms ease-out',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
                 }}
               >
                 <X size={16} aria-hidden="true" />
@@ -380,14 +380,14 @@ export const Chatbot: React.FC = () => {
                           width: '2rem',
                           height: '2rem',
                           borderRadius: '8px',
-                          backgroundColor: primaryColor,
-                          color: secondaryColor,
-                          border: `1px solid ${secondaryColor}44`,
+                          backgroundColor: '#FFF1F2',
+                          color: '#B80F2E',
+                          border: '1px solid #FFE4E6',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           flexShrink: 0,
-                          boxShadow: '0 1px 4px rgba(0, 0, 0, 0.15)',
+                          boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
                         }}
                       >
                         <Bot size={14} />
@@ -395,12 +395,12 @@ export const Chatbot: React.FC = () => {
                     )}
                     <div
                       style={{
-                        maxWidth: '75%',
+                        maxWidth: '78%',
                         padding: '0.75rem 1rem',
                         borderRadius: '12px',
-                        backgroundColor: message.sender === 'user' ? primaryColor : '#FFFFFF',
+                        backgroundColor: message.sender === 'user' ? '#7A0C16' : '#FFFFFF',
                         color: message.sender === 'user' ? '#FFFFFF' : '#1E293B',
-                        border: message.sender === 'user' ? '1px solid rgba(0,0,0,0.1)' : '1px solid #E2E8F0',
+                        border: message.sender === 'user' ? '1px solid #7A0C16' : '1px solid #E2E8F0',
                         fontSize: '0.875rem',
                         lineHeight: 1.5,
                         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
@@ -431,23 +431,24 @@ export const Chatbot: React.FC = () => {
                               key={index}
                               onClick={() => handleButtonClick(button.action)}
                               style={{
-                                padding: '0.45rem 0.75rem',
-                                borderRadius: '6px',
-                                border: `1px solid ${primaryColor}`,
-                                backgroundColor: '#FFFFFF',
-                                color: primaryColor,
+                                padding: '0.45rem 0.85rem',
+                                borderRadius: '9999px',
+                                border: 'none',
+                                background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
+                                color: '#FFFFFF',
                                 fontSize: '0.75rem',
                                 fontWeight: 600,
                                 cursor: 'pointer',
                                 transition: 'all 180ms ease-out',
+                                boxShadow: '0 2px 6px rgba(184, 15, 46, 0.3)',
                               }}
                               onMouseEnter={(e) => {
-                                e.currentTarget.style.backgroundColor = primaryColor;
-                                e.currentTarget.style.color = '#FFFFFF';
+                                e.currentTarget.style.filter = 'brightness(1.15)';
+                                e.currentTarget.style.transform = 'translateY(-1px)';
                               }}
                               onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = '#FFFFFF';
-                                e.currentTarget.style.color = primaryColor;
+                                e.currentTarget.style.filter = 'none';
+                                e.currentTarget.style.transform = 'translateY(0)';
                               }}
                             >
                               {button.label}
@@ -462,7 +463,7 @@ export const Chatbot: React.FC = () => {
                           width: '2rem',
                           height: '2rem',
                           borderRadius: '50%',
-                          backgroundColor: 'var(--color-primary-button, #18181B)',
+                          backgroundColor: '#99152B',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -481,8 +482,8 @@ export const Chatbot: React.FC = () => {
                         width: '2rem',
                         height: '2rem',
                         borderRadius: '8px',
-                        backgroundColor: 'var(--color-primary-button, #18181B)',
-                        color: 'var(--color-brand-gold, #F59E0B)',
+                        backgroundColor: '#FFF1F2',
+                        color: '#B80F2E',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -505,7 +506,7 @@ export const Chatbot: React.FC = () => {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: primaryColor,
+                          backgroundColor: '#B80F2E',
                           animation: 'bounce 1s infinite',
                         }}
                       />
@@ -514,7 +515,7 @@ export const Chatbot: React.FC = () => {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: primaryColor,
+                          backgroundColor: '#B80F2E',
                           animation: 'bounce 1s infinite 0.2s',
                         }}
                       />
@@ -523,7 +524,7 @@ export const Chatbot: React.FC = () => {
                           width: '6px',
                           height: '6px',
                           borderRadius: '50%',
-                          backgroundColor: primaryColor,
+                          backgroundColor: '#B80F2E',
                           animation: 'bounce 1s infinite 0.4s',
                         }}
                       />
@@ -554,19 +555,19 @@ export const Chatbot: React.FC = () => {
                           borderRadius: '9999px',
                           fontSize: '0.6875rem',
                           fontWeight: 600,
-                          backgroundColor: '#F1F5F9',
-                          color: '#1E293B',
-                          border: '1px solid #E2E8F0',
+                          backgroundColor: '#FFF1F2',
+                          color: '#99152B',
+                          border: '1px solid #FECDD3',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = primaryColor;
+                          e.currentTarget.style.backgroundColor = '#99152B';
                           e.currentTarget.style.color = '#FFFFFF';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = '#F1F5F9';
-                          e.currentTarget.style.color = '#1E293B';
+                          e.currentTarget.style.backgroundColor = '#FFF1F2';
+                          e.currentTarget.style.color = '#99152B';
                         }}
                       >
                         {prompt}
@@ -599,7 +600,7 @@ export const Chatbot: React.FC = () => {
                       transition: 'border-color 180ms ease-out',
                     }}
                     onFocus={(e) => {
-                      e.currentTarget.style.borderColor = primaryColor;
+                      e.currentTarget.style.borderColor = '#B80F2E';
                     }}
                     onBlur={(e) => {
                       e.currentTarget.style.borderColor = '#CBD5E1';
@@ -614,13 +615,13 @@ export const Chatbot: React.FC = () => {
                       height: '2.5rem',
                       borderRadius: '8px',
                       border: 'none',
-                      backgroundColor: inputText.trim() ? primaryColor : '#E2E8F0',
+                      background: inputText.trim() ? 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)' : '#E2E8F0',
                       color: inputText.trim() ? '#FFFFFF' : '#94A3B8',
                       cursor: inputText.trim() ? 'pointer' : 'not-allowed',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      boxShadow: inputText.trim() ? `0 2px 8px ${primaryColor}40` : 'none',
+                      boxShadow: inputText.trim() ? '0 2px 8px rgba(184, 15, 46, 0.4)' : 'none',
                       transition: 'all 180ms ease-out',
                     }}
                     onMouseEnter={(e) => {
@@ -642,7 +643,7 @@ export const Chatbot: React.FC = () => {
                     marginTop: '0.5rem',
                   }}
                 >
-                  Replies are automated guidance. For tailored RFQ proposals, use our quote form.
+                  Replies are automated guidance. For custom solutions, connect with our engineering team.
                 </div>
               </div>
             </>

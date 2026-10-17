@@ -223,7 +223,7 @@ export const AdminLogin: React.FC = () => {
               Stay authenticated (7 days)
             </label>
             <span style={{ color: '#0F172A', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', fontWeight: 600 }}>
-              <Database size={12} color="#F59E0B" /> Neon Postgres
+              <Database size={12} color="#D3163C" /> Neon Postgres
             </span>
           </div>
 

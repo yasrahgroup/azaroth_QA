@@ -19,7 +19,6 @@ import { Portfolio } from './pages/Portfolio';
 import { Insights } from './pages/Insights';
 import { InsightDetail } from './pages/InsightDetail';
 import { Connect } from './pages/Connect';
-import { RequestQuote } from './pages/RequestQuote';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { NotFound } from './pages/NotFound';
@@ -114,10 +113,10 @@ export const App: React.FC = () => {
               <Route path="/contact" element={<Navigate to="/connect-with-us" replace />} />
               <Route path="/connect" element={<Navigate to="/connect-with-us" replace />} />
 
-              {/* Request for Quote */}
-              <Route path="/request-for-quote" element={<RequestQuote />} />
-              <Route path="/rfq" element={<Navigate to="/request-for-quote" replace />} />
-              <Route path="/quote" element={<Navigate to="/request-for-quote" replace />} />
+              {/* RFQ routes redirected to Connect */}
+              <Route path="/request-for-quote" element={<Navigate to="/connect-with-us" replace />} />
+              <Route path="/rfq" element={<Navigate to="/connect-with-us" replace />} />
+              <Route path="/quote" element={<Navigate to="/connect-with-us" replace />} />
 
               {/* Legal Pages */}
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />

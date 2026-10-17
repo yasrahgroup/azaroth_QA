@@ -28,7 +28,7 @@ const defaultFaqs = [
   },
   {
     question: 'How is pricing structured?',
-    answer: 'Pricing is scoped per engagement after discovery, once the scope, constraints, and delivery approach are clear. Submit your requirements through the request-for-quote form and we will return a scoped quote.',
+    answer: 'Pricing is scoped per engagement after discovery, once the scope, constraints, and delivery approach are clear. Share your requirements through our Connect portal and our engineering leadership will return a scoped proposal.',
   },
 ];
 

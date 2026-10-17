@@ -76,7 +76,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({
                   ? 'var(--color-primary-button, #18181B)' 
                   : '#ffffff',
                 border: isCurrent 
-                  ? '2px solid var(--color-brand-gold, #F59E0B)' 
+                  ? '2px solid var(--color-brand-gold, #B80F2E)' 
                   : isCompleted 
                   ? '2px solid var(--color-link-main, #18181B)' 
                   : '2px solid var(--color-border, #E4E4E7)',

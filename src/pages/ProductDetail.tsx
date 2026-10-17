@@ -130,7 +130,7 @@ export const ProductDetail: React.FC = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <Button to="/request-for-quote" variant="gold" size="lg" icon={<ArrowRight size={18} />}>
+            <Button to="/connect-with-us" variant="primary" size="lg" icon={<ArrowRight size={18} />}>
               Request Technical Deployment
             </Button>
             <Button to="/connect-with-us" variant="outline" size="lg">
@@ -225,7 +225,7 @@ export const ProductDetail: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {product.features.map((feat, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                    <CheckCircle2 size={20} style={{ color: '#D4AF37', flexShrink: 0, marginTop: '0.15rem' }} />
+                    <CheckCircle2 size={20} style={{ color: 'var(--color-primary-maroon)', flexShrink: 0, marginTop: '0.15rem' }} />
                     <span style={{ fontSize: '1rem', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>{feat}</span>
                   </div>
                 ))}

@@ -55,11 +55,11 @@ export const FinalCTA: React.FC = () => {
             flexWrap: 'wrap',
             gap: '1rem',
           }}>
-            <Button to="/request-for-quote" variant="gold" size="lg" icon={<ArrowRight size={18} aria-hidden="true" />}>
-              Request a quote
+            <Button to="/connect-with-us" variant="primary" size="lg" icon={<ArrowRight size={18} aria-hidden="true" />}>
+              Connect With Us
             </Button>
-            <Button to="/connect-with-us" variant="outline" size="lg">
-              Talk to our team
+            <Button to="/products" variant="outline" size="lg">
+              Explore Products
             </Button>
           </div>
         </motion.div>

@@ -64,7 +64,7 @@ export const AboutSection: React.FC = () => {
                 gap: '0.5rem',
                 fontSize: '0.8125rem',
                 fontWeight: 700,
-                color: 'var(--color-brand-gold, #F59E0B)',
+                color: '#99152B',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 marginBottom: '0.875rem',
@@ -86,7 +86,7 @@ export const AboutSection: React.FC = () => {
               Turning Ideas into{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-accent, #7C3AED) 50%, var(--color-brand-gold, #F59E0B) 100%)',
+                  background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -173,8 +173,8 @@ export const AboutSection: React.FC = () => {
                     width: '42px',
                     height: '42px',
                     borderRadius: '50%',
-                    backgroundColor: '#FEF3C7',
-                    color: '#D97706',
+                    backgroundColor: '#FFF1F2',
+                    color: '#B80F2E',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

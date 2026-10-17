@@ -1,45 +1,47 @@
 :root {
   /* ============================================================
      AZAROTH TECH-HIVE DESIGN SYSTEM TOKENS
-     - Executive Palette: Obsidian Luxe & Warm Amber
-     - Primary brand & action buttons: Deep Obsidian #18181B
-     - Main links and active navigation: Deep Obsidian #18181B
-     - Amber / Gold highlights & indicator: Warm Amber #F59E0B
-     - Page backgrounds: Clean Canvas White #FFFFFF / Off-White #FAFAFA
-     - Success messages & SLAs: Emerald #047857
-     - Alert & emphasis: Crimson Rose #E11D48
-     - Warnings: Amber #D97706
-     - Main text: Executive Slate #0F172A
-     - Neutral borders & dividers: Zinc Slate #E4E4E7
+     - Executive Palette: Crimson Red Identity
+     - Primary Gradient: #7A0C16 → #99152B → #D3163C
+     - Button Gradient: #7A0C16 → #B80F2E → #F02B4F
+     - Button Hover Gradient: #99152B → #D3163C → #F02B4F
+     - Complete removal of yellow/amber across all elements
      ============================================================ */
 
-  /* --- 1. PRIMARY BUTTONS & ACTIONS (OBSIDIAN) --- */
-  --color-primary-button: #18181B;
-  --color-primary-button-hover: #27272A;
-  --color-primary-button-active: #09090B;
+  /* --- 1. PRIMARY BUTTONS & ACTIONS (CRIMSON RED GRADIENT) --- */
+  --gradient-button: linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%);
+  --gradient-button-hover: linear-gradient(135deg, #99152B 0%, #D3163C 50%, #F02B4F 100%);
+  --gradient-button-active: linear-gradient(135deg, #600810 0%, #7A0C16 50%, #B80F2E 100%);
+  --gradient-primary: linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%);
+  --gradient-brand: linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%);
+  --gradient-hero: linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%);
+
+  --color-primary-button: linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%);
+  --color-primary-button-hover: linear-gradient(135deg, #99152B 0%, #D3163C 50%, #F02B4F 100%);
+  --color-primary-button-active: linear-gradient(135deg, #600810 0%, #7A0C16 50%, #B80F2E 100%);
   --color-primary-button-text: #FFFFFF;
-  --shadow-primary-button: 0 4px 14px 0 rgba(24, 24, 27, 0.22);
-  --shadow-primary-button-lg: 0 10px 25px -4px rgba(24, 24, 27, 0.32);
+  --shadow-primary-button: 0 4px 14px 0 rgba(184, 15, 46, 0.35);
+  --shadow-primary-button-lg: 0 10px 25px -4px rgba(184, 15, 46, 0.45);
 
   /* --- 2. MAIN LINKS & ACTIVE NAVIGATION --- */
-  --color-link-main: #18181B;
-  --color-link-hover: #D97706;
-  --color-link-active: #B45309;
-  --color-nav-active: #18181B;
-  --color-nav-active-bg: #F4F4F5;
-  --color-nav-indicator: #F59E0B;
+  --color-link-main: #7A0C16;
+  --color-link-hover: #D3163C;
+  --color-link-active: #B80F2E;
+  --color-nav-active: #7A0C16;
+  --color-nav-active-bg: rgba(184, 15, 46, 0.08);
+  --color-nav-indicator: #D3163C;
 
   /* --- 3. PAGE BACKGROUNDS & SURFACES --- */
   --color-white: #FFFFFF;
   --color-bg-white: #FFFFFF;
-  --color-bg-indigo-soft: #F4F4F5;
+  --color-bg-indigo-soft: #FDF2F4;
   --color-canvas-bg: #FFFFFF;
   --color-canvas-card: #FFFFFF;
   --color-canvas-muted: #FAFAFA;
-  --color-canvas-subtle: #F8FAFC;
-  --color-surface-soft: #F4F4F5;
+  --color-canvas-subtle: #FDF8F8;
+  --color-surface-soft: #FDF2F4;
   --color-surface-muted: #FAFAFA;
-  --color-surface-subtle: #F1F5F9;
+  --color-surface-subtle: #F8FAFC;
 
   /* --- 4. SUCCESS MESSAGES & SLAS --- */
   --color-success: #047857;
@@ -51,46 +53,46 @@
   --shadow-emerald: 0 4px 14px 0 rgba(4, 120, 87, 0.2);
   --shadow-emerald-lg: 0 12px 28px -4px rgba(4, 120, 87, 0.25);
 
-  /* --- 5. WARM AMBER / PRESTIGE ACCENTS --- */
-  --color-brand-gold: #F59E0B;
-  --color-brand-gold-hover: #D97706;
-  --color-brand-gold-light: #FEF3C7;
-  --color-brand-gold-lighter: #FFFBEB;
-  --color-brand-gold-text: #B45309;
-  --color-brand-gold-border: #FDE68A;
-  --color-brand-gold-shadow: rgba(245, 158, 11, 0.2);
-  --color-brand-gold-glow: rgba(245, 158, 11, 0.3);
+  /* --- 5. CRIMSON RED ACCENTS (COMPLETELY REPLACING YELLOW / AMBER) --- */
+  --color-brand-gold: #B80F2E;
+  --color-brand-gold-hover: #D3163C;
+  --color-brand-gold-light: rgba(184, 15, 46, 0.08);
+  --color-brand-gold-lighter: rgba(184, 15, 46, 0.04);
+  --color-brand-gold-text: #99152B;
+  --color-brand-gold-border: rgba(184, 15, 46, 0.25);
+  --color-brand-gold-shadow: rgba(184, 15, 46, 0.25);
+  --color-brand-gold-glow: rgba(211, 22, 60, 0.35);
 
-  --color-premium: #F59E0B;
-  --color-premium-hover: #D97706;
-  --color-premium-light: #FEF3C7;
-  --color-premium-lighter: #FFFBEB;
-  --color-premium-text: #B45309;
-  --color-premium-border: #FDE68A;
-  --shadow-gold: 0 4px 14px 0 rgba(245, 158, 11, 0.25);
-  --shadow-gold-lg: 0 12px 28px -4px rgba(245, 158, 11, 0.3);
+  --color-premium: #B80F2E;
+  --color-premium-hover: #D3163C;
+  --color-premium-light: rgba(184, 15, 46, 0.08);
+  --color-premium-lighter: rgba(184, 15, 46, 0.04);
+  --color-premium-text: #99152B;
+  --color-premium-border: rgba(184, 15, 46, 0.25);
+  --shadow-gold: 0 4px 14px 0 rgba(184, 15, 46, 0.3);
+  --shadow-gold-lg: 0 12px 28px -4px rgba(184, 15, 46, 0.38);
 
-  /* --- 6. ALERTS & HIGHLIGHTS (ROSE CRIMSON) --- */
-  --color-alert: #E11D48;
-  --color-alert-hover: #BE123C;
+  /* --- 6. ALERTS & HIGHLIGHTS (CRIMSON ROSE) --- */
+  --color-alert: #D3163C;
+  --color-alert-hover: #99152B;
   --color-alert-light: #FFE4E6;
   --color-alert-lighter: #FFF1F2;
-  --color-alert-text: #E11D48;
+  --color-alert-text: #7A0C16;
   --color-alert-border: #FECDD3;
-  --color-danger: #E11D48;
+  --color-danger: #D3163C;
   --color-danger-light: #FFE4E6;
-  --color-danger-text: #E11D48;
+  --color-danger-text: #7A0C16;
   --color-danger-border: #FECDD3;
-  --shadow-rose: 0 4px 14px 0 rgba(225, 29, 72, 0.2);
+  --shadow-rose: 0 4px 14px 0 rgba(211, 22, 60, 0.25);
 
-  /* --- 7. WARNINGS & REWARDS (AMBER) --- */
-  --color-warning: #D97706;
-  --color-warning-hover: #B45309;
-  --color-warning-light: #FEF3C7;
-  --color-warning-lighter: #FFFBEB;
-  --color-warning-text: #D97706;
-  --color-warning-border: #FDE68A;
-  --shadow-amber: 0 4px 14px 0 rgba(217, 119, 6, 0.2);
+  /* --- 7. WARNINGS & REWARDS (CRIMSON TONE) --- */
+  --color-warning: #99152B;
+  --color-warning-hover: #7A0C16;
+  --color-warning-light: rgba(184, 15, 46, 0.08);
+  --color-warning-lighter: rgba(184, 15, 46, 0.04);
+  --color-warning-text: #7A0C16;
+  --color-warning-border: rgba(184, 15, 46, 0.25);
+  --shadow-amber: 0 4px 14px 0 rgba(184, 15, 46, 0.2);
 
   /* --- 8. MAIN TEXT & TYPOGRAPHY COLORS --- */
   --color-text-primary: #0F172A;
@@ -107,58 +109,58 @@
   --color-border-strong: #94A3B8;
 
   /* --- SYSTEM ALIASES FOR CONSISTENCY ACROSS EXISTING COMPONENTS --- */
-  --color-primary: #18181B;
-  --color-primary-hover: #27272A;
-  --color-primary-light: #F4F4F5;
-  --color-primary-lighter: #FAFAFA;
-  --color-primary-text: #18181B;
-  --color-primary-border: #E4E4E7;
-  --color-primary-glow: rgba(24, 24, 27, 0.2);
-  --color-primary-shadow: rgba(24, 24, 27, 0.15);
+  --color-primary: #7A0C16;
+  --color-primary-hover: #99152B;
+  --color-primary-light: rgba(184, 15, 46, 0.08);
+  --color-primary-lighter: rgba(184, 15, 46, 0.04);
+  --color-primary-text: #7A0C16;
+  --color-primary-border: rgba(184, 15, 46, 0.25);
+  --color-primary-glow: rgba(184, 15, 46, 0.25);
+  --color-primary-shadow: rgba(184, 15, 46, 0.2);
 
-  --color-brand-emerald: #18181B;
-  --color-brand-emerald-hover: #27272A;
-  --color-brand-emerald-light: #F4F4F5;
-  --color-brand-emerald-lighter: #FAFAFA;
-  --color-brand-emerald-text: #18181B;
-  --color-brand-emerald-border: #E4E4E7;
-  --color-brand-emerald-shadow: rgba(24, 24, 27, 0.15);
-  --color-brand-emerald-glow: rgba(24, 24, 27, 0.2);
+  --color-brand-emerald: #7A0C16;
+  --color-brand-emerald-hover: #99152B;
+  --color-brand-emerald-light: rgba(184, 15, 46, 0.08);
+  --color-brand-emerald-lighter: rgba(184, 15, 46, 0.04);
+  --color-brand-emerald-text: #7A0C16;
+  --color-brand-emerald-border: rgba(184, 15, 46, 0.25);
+  --color-brand-emerald-shadow: rgba(184, 15, 46, 0.15);
+  --color-brand-emerald-glow: rgba(184, 15, 46, 0.2);
 
-  --color-brand-violet: #18181B;
-  --color-brand-violet-hover: #27272A;
-  --color-brand-violet-light: #F4F4F5;
-  --color-brand-violet-lighter: #FAFAFA;
-  --color-brand-violet-text: #18181B;
-  --color-brand-violet-border: #E4E4E7;
-  --color-brand-violet-shadow: rgba(24, 24, 27, 0.15);
-  --color-brand-violet-glow: rgba(24, 24, 27, 0.2);
+  --color-brand-violet: #99152B;
+  --color-brand-violet-hover: #7A0C16;
+  --color-brand-violet-light: rgba(184, 15, 46, 0.08);
+  --color-brand-violet-lighter: rgba(184, 15, 46, 0.04);
+  --color-brand-violet-text: #7A0C16;
+  --color-brand-violet-border: rgba(184, 15, 46, 0.25);
+  --color-brand-violet-shadow: rgba(184, 15, 46, 0.15);
+  --color-brand-violet-glow: rgba(184, 15, 46, 0.2);
 
-  --color-brand-orange: #F59E0B;
-  --color-brand-orange-hover: #D97706;
-  --color-brand-orange-light: #FEF3C7;
-  --color-brand-orange-lighter: #FFFBEB;
-  --color-brand-orange-text: #B45309;
-  --color-brand-orange-border: #FDE68A;
-  --color-brand-orange-shadow: rgba(245, 158, 11, 0.15);
-  --color-brand-orange-glow: rgba(245, 158, 11, 0.2);
+  --color-brand-orange: #B80F2E;
+  --color-brand-orange-hover: #D3163C;
+  --color-brand-orange-light: rgba(184, 15, 46, 0.08);
+  --color-brand-orange-lighter: rgba(184, 15, 46, 0.04);
+  --color-brand-orange-text: #99152B;
+  --color-brand-orange-border: rgba(184, 15, 46, 0.25);
+  --color-brand-orange-shadow: rgba(184, 15, 46, 0.15);
+  --color-brand-orange-glow: rgba(184, 15, 46, 0.2);
 
-  --color-brand-magenta: #E11D48;
-  --color-brand-magenta-hover: #BE123C;
-  --color-brand-magenta-light: #FFE4E6;
-  --color-brand-magenta-lighter: #FFF1F2;
-  --color-brand-magenta-text: #E11D48;
-  --color-brand-magenta-border: #FECDD3;
-  --color-brand-magenta-shadow: rgba(225, 29, 72, 0.15);
-  --color-brand-magenta-glow: rgba(225, 29, 72, 0.2);
+  --color-brand-magenta: #D3163C;
+  --color-brand-magenta-hover: #99152B;
+  --color-brand-magenta-light: rgba(211, 22, 60, 0.08);
+  --color-brand-magenta-lighter: rgba(211, 22, 60, 0.04);
+  --color-brand-magenta-text: #7A0C16;
+  --color-brand-magenta-border: rgba(211, 22, 60, 0.25);
+  --color-brand-magenta-shadow: rgba(211, 22, 60, 0.15);
+  --color-brand-magenta-glow: rgba(211, 22, 60, 0.2);
 
-  /* Legacy brand tokens mapped directly to Azaroth identity */
-  --color-primary-green: #18181B;
-  --color-primary-maroon: #E11D48;
-  --color-dark-forest: #09090B;
-  --color-dark-maroon: #9F1239;
-  --color-gold-from: #F59E0B;
-  --color-gold-to: #D97706;
+  /* Legacy brand tokens mapped directly to Azaroth Crimson Red identity */
+  --color-primary-green: #7A0C16;
+  --color-primary-maroon: #7A0C16;
+  --color-dark-forest: #4A070E;
+  --color-dark-maroon: #600810;
+  --color-gold-from: #7A0C16;
+  --color-gold-to: #D3163C;
   --color-canvas-card-elevated: #FFFFFF;
 
   --color-secondary: var(--color-brand-gold);
@@ -179,23 +181,23 @@
   --color-accent-glow: var(--color-brand-magenta-glow);
   --color-accent-shadow: var(--color-brand-magenta-shadow);
 
-  --color-warm: #F59E0B;
-  --color-warm-hover: #D97706;
-  --color-warm-light: #FEF3C7;
-  --color-warm-lighter: #FFFBEB;
-  --color-warm-text: #B45309;
-  --color-warm-border: #FDE68A;
-  --color-warm-glow: rgba(245, 158, 11, 0.2);
-  --color-warm-shadow: rgba(245, 158, 11, 0.15);
+  --color-warm: #B80F2E;
+  --color-warm-hover: #D3163C;
+  --color-warm-light: rgba(184, 15, 46, 0.08);
+  --color-warm-lighter: rgba(184, 15, 46, 0.04);
+  --color-warm-text: #99152B;
+  --color-warm-border: rgba(184, 15, 46, 0.25);
+  --color-warm-glow: rgba(184, 15, 46, 0.2);
+  --color-warm-shadow: rgba(184, 15, 46, 0.15);
 
-  --color-luxury: #F59E0B;
-  --color-luxury-hover: #D97706;
-  --color-luxury-light: #FEF3C7;
-  --color-luxury-lighter: #FFFBEB;
-  --color-luxury-text: #B45309;
-  --color-luxury-border: #FDE68A;
-  --color-luxury-glow: rgba(245, 158, 11, 0.2);
-  --color-luxury-shadow: rgba(245, 158, 11, 0.15);
+  --color-luxury: #B80F2E;
+  --color-luxury-hover: #D3163C;
+  --color-luxury-light: rgba(184, 15, 46, 0.08);
+  --color-luxury-lighter: rgba(184, 15, 46, 0.04);
+  --color-luxury-text: #99152B;
+  --color-luxury-border: rgba(184, 15, 46, 0.25);
+  --color-luxury-glow: rgba(184, 15, 46, 0.2);
+  --color-luxury-shadow: rgba(184, 15, 46, 0.15);
 
   /* --- TYPOGRAPHY --- */
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -219,91 +221,34 @@
   --space-24: 6rem;
   --space-32: 8rem;
 
-  /* --- BORDER RADII --- */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
+  /* --- BORDER RADIUS --- */
+  --radius-none: 0;
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
   --radius-full: 9999px;
 
-  /* --- SHADOWS & ELEVATION --- */
-  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 2px 4px 0 rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.12);
-  --shadow-xl: 0 20px 32px -8px rgba(15, 23, 42, 0.16);
-  --shadow-2xl: 0 25px 50px -12px rgba(15, 23, 42, 0.2);
+  /* --- TRANSITIONS & TIMING --- */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --shadow-primary: var(--shadow-primary-button);
-  --shadow-primary-lg: var(--shadow-primary-button-lg);
-  --shadow-secondary: var(--shadow-gold);
-  --shadow-accent: var(--shadow-rose);
-  --shadow-warm: var(--shadow-amber);
-  --shadow-luxury: var(--shadow-gold);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
 
-  --shadow-glow-primary: 0 0 20px rgba(24, 24, 27, 0.25);
-  --shadow-glow-secondary: 0 0 20px rgba(245, 158, 11, 0.25);
-  --shadow-glow-accent: 0 0 20px rgba(225, 29, 72, 0.25);
-  --shadow-glow-warm: 0 0 20px rgba(217, 119, 6, 0.25);
-  --shadow-glow-luxury: 0 0 20px rgba(245, 158, 11, 0.25);
-  --shadow-glow-gold: 0 0 20px rgba(245, 158, 11, 0.3);
-
-  /* --- TRANSITIONS --- */
-  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-bounce: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-  /* --- Z-INDEX --- */
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-fixed: 300;
-  --z-modal-backdrop: 400;
-  --z-modal: 500;
-  --z-popover: 600;
-  --z-tooltip: 700;
-  --z-toast: 800;
-
-  /* --- TYPOGRAPHY SCALE --- */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
-  --text-6xl: 3.75rem;
-  --text-7xl: 4.5rem;
-
-  /* Neutral aliases */
-  --color-neutral-50: #FAFAFA;
-  --color-neutral-100: #F4F4F5;
-  --color-neutral-200: #E4E4E7;
-  --color-neutral-300: #CBD5E1;
-  --color-neutral-400: #94A3B8;
-  --color-neutral-900: #0F172A;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --transition-fast: 0.01ms;
-    --transition-normal: 0.01ms;
-    --transition-smooth: 0.01ms;
-    --transition-slow: 0.01ms;
-    --transition-bounce: 0.01ms;
-  }
-}
-
-@media (forced-colors: active) {
-  :root {
-    --color-brand-orange: CanvasText;
-    --color-brand-magenta: CanvasText;
-    --color-brand-gold: CanvasText;
-    --color-border: CanvasText;
-    --color-border-strong: CanvasText;
-  }
+  /* --- SHADOWS --- */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 4px 20px -2px rgba(122, 12, 22, 0.05);
+  --shadow-card-hover: 0 16px 36px -4px rgba(184, 15, 46, 0.14);
 }

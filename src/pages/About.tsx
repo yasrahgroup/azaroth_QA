@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   MapPin,
   Phone,
@@ -55,8 +56,94 @@ export const About: React.FC = () => {
         subtitle={heroSubtitle}
       />
 
+      {/* Who We Are: In-Page Navigation Bar */}
+      <nav
+        aria-label="Who We Are In-Page Navigation"
+        style={{
+          backgroundColor: '#FFFFFF',
+          borderBottom: '1px solid #E4E4E7',
+          padding: '0.85rem 0',
+          position: 'sticky',
+          top: '4.75rem',
+          zIndex: 40,
+          boxShadow: '0 4px 15px -3px rgba(0, 0, 0, 0.04)',
+        }}
+      >
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.12em', marginRight: '0.5rem' }}>
+            Who We Are:
+          </span>
+          <a
+            href="#about-us"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
+              color: '#FFFFFF',
+              fontSize: '0.8125rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 2px 8px rgba(184, 15, 46, 0.35)',
+            }}
+          >
+            About Us
+          </a>
+          <Link
+            to="/values"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#FDF2F4',
+              color: '#7A0C16',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              border: '1px solid rgba(184, 15, 46, 0.25)',
+              transition: 'all 140ms ease-out',
+            }}
+            className="hover:border-rose-400 hover:text-rose-800 hover:bg-rose-50"
+          >
+            Our Values
+          </Link>
+          <Link
+            to="/delivery-framework"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#FDF2F4',
+              color: '#7A0C16',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              border: '1px solid rgba(184, 15, 46, 0.25)',
+              transition: 'all 140ms ease-out',
+            }}
+            className="hover:border-rose-400 hover:text-rose-800 hover:bg-rose-50"
+          >
+            Delivery Framework
+          </Link>
+          <a
+            href="#global-hubs"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#FDF2F4',
+              color: '#7A0C16',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              border: '1px solid rgba(184, 15, 46, 0.25)',
+              transition: 'all 140ms ease-out',
+            }}
+            className="hover:border-rose-400 hover:text-rose-800 hover:bg-rose-50"
+          >
+            Global Hubs
+          </a>
+        </div>
+      </nav>
+
       {/* Main Narrative with Visual Workspace Image */}
-      <section style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 0' }}>
+      <section id="about-us" style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 0' }}>
         <div className="container">
           <div
             style={{
@@ -109,8 +196,8 @@ export const About: React.FC = () => {
                     width: '2.75rem',
                     height: '2.75rem',
                     borderRadius: '10px',
-                    backgroundColor: '#EDE9FE',
-                    color: '#7C3AED',
+                    backgroundColor: 'rgba(184, 15, 46, 0.08)',
+                    color: '#99152B',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -138,7 +225,7 @@ export const About: React.FC = () => {
                   gap: '0.5rem',
                   fontSize: '0.8125rem',
                   fontWeight: 700,
-                  color: '#C68A3D',
+                  color: '#99152B',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginBottom: '1rem',
@@ -206,7 +293,7 @@ export const About: React.FC = () => {
       </section>
 
       {/* 2x2 Grid Layout for Vision, Mission & Core Pillars */}
-      <section style={{ backgroundColor: '#FFFFFF', padding: '5.5rem 0' }}>
+      <section style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(184, 15, 46, 0.05) 0%, transparent 70%), #FFFFFF', padding: '5.5rem 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 3.5rem auto' }}>
             <div
@@ -216,7 +303,7 @@ export const About: React.FC = () => {
                 gap: '0.5rem',
                 fontSize: '0.8125rem',
                 fontWeight: 700,
-                color: '#C68A3D',
+                color: '#99152B',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 marginBottom: '0.75rem',
@@ -238,7 +325,7 @@ export const About: React.FC = () => {
               How We Architect{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+                  background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -280,8 +367,8 @@ export const About: React.FC = () => {
                   width: '3.25rem',
                   height: '3.25rem',
                   borderRadius: '12px',
-                  backgroundColor: '#EDE9FE',
-                  color: '#7C3AED',
+                  backgroundColor: 'rgba(184, 15, 46, 0.08)',
+                  color: '#99152B',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -352,8 +439,8 @@ export const About: React.FC = () => {
                   width: '3.25rem',
                   height: '3.25rem',
                   borderRadius: '12px',
-                  backgroundColor: '#E0F2FE',
-                  color: '#0284C7',
+                  backgroundColor: 'rgba(184, 15, 46, 0.08)',
+                  color: '#B80F2E',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -388,8 +475,8 @@ export const About: React.FC = () => {
                   width: '3.25rem',
                   height: '3.25rem',
                   borderRadius: '12px',
-                  backgroundColor: '#FEF3C7',
-                  color: '#D97706',
+                  backgroundColor: 'rgba(184, 15, 46, 0.08)',
+                  color: '#D3163C',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -410,7 +497,7 @@ export const About: React.FC = () => {
       </section>
 
       {/* Global Locations & Head Office Section */}
-      <section style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 0' }}>
+      <section id="global-hubs" style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 0' }}>
         <div className="container">
           <div
             style={{
@@ -428,7 +515,7 @@ export const About: React.FC = () => {
                   gap: '0.5rem',
                   fontSize: '0.8125rem',
                   fontWeight: 700,
-                  color: '#C68A3D',
+                  color: '#99152B',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginBottom: '1rem',
@@ -443,11 +530,11 @@ export const About: React.FC = () => {
                 Serving global enterprises across the GCC, Asia-Pacific, Europe, and North America from our key hubs in Doha, Qatar and Chennai, India.
               </p>
               <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <Button to="/connect-with-us" variant="gold" icon={<ArrowRight size={16} />}>
+                <Button to="/connect-with-us" variant="primary" icon={<ArrowRight size={16} />}>
                   Connect With Our Team
                 </Button>
-                <Button to="/request-for-quote" variant="outline">
-                  Submit an RFQ
+                <Button to="/products" variant="outline">
+                  Explore Products
                 </Button>
               </div>
             </div>
@@ -467,8 +554,8 @@ export const About: React.FC = () => {
                   style={{
                     padding: '0.75rem',
                     borderRadius: '12px',
-                    backgroundColor: '#FEF3C7',
-                    color: '#D97706',
+                    backgroundColor: 'rgba(184, 15, 46, 0.12)',
+                    color: '#B80F2E',
                   }}
                 >
                   <MapPin size={24} />
@@ -488,7 +575,7 @@ export const About: React.FC = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem', fontSize: '0.875rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', color: '#334155' }}>
-                  <Phone size={16} style={{ color: '#C68A3D' }} />
+                  <Phone size={16} style={{ color: '#99152B' }} />
                   <a href={`tel:${phone.replace(/\s+/g, '')}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                     {phone}
                   </a>

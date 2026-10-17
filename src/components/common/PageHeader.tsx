@@ -29,7 +29,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           <span
             key={index}
             style={{
-              background: 'linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-accent, #7C3AED) 60%, var(--color-brand-gold, #F59E0B) 100%)',
+              background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -66,7 +66,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           bottom: 0,
           backgroundImage: `
             radial-gradient(circle at 20% 50%, rgba(24, 24, 27, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.04) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, rgba(184, 15, 46, 0.04) 0%, transparent 40%),
             radial-gradient(circle at 40% 80%, rgba(24, 24, 27, 0.02) 0%, transparent 50%),
             linear-gradient(135deg, rgba(24, 24, 27, 0.01) 0%, transparent 50%)
           `,
@@ -99,7 +99,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           width: '300px',
           height: '300px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, rgba(24, 24, 27, 0.05) 0%, rgba(245, 158, 11, 0.03) 100%)',
+          background: 'linear-gradient(135deg, rgba(24, 24, 27, 0.05) 0%, rgba(184, 15, 46, 0.03) 100%)',
           filter: 'blur(60px)',
           pointerEvents: 'none',
         }}
@@ -112,7 +112,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
           width: '200px',
           height: '200px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(24, 24, 27, 0.02) 100%)',
+          background: 'linear-gradient(135deg, rgba(184, 15, 46, 0.05) 0%, rgba(24, 24, 27, 0.02) 100%)',
           filter: 'blur(40px)',
           pointerEvents: 'none',
         }}
@@ -138,7 +138,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             marginBottom: '1rem',
-            color: 'var(--color-brand-gold, #F59E0B)',
+            color: '#99152B',
             animation: 'fadeInUp 1s ease-out 0.3s forwards',
             opacity: 0,
           }}

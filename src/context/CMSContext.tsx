@@ -32,8 +32,8 @@ export const defaultChatbot: ChatbotConfig = {
   supportEmail: companyInfo.headquarters.email,
   supportPhone: companyInfo.headquarters.phone,
   position: 'bottom-right',
-  primaryColor: '#18181B',
-  secondaryColor: '#F59E0B',
+  primaryColor: '#7A0C16',
+  secondaryColor: '#D3163C',
 };
 
 export const defaultModules: WebsiteModuleSetting[] = [
@@ -46,17 +46,16 @@ export const defaultModules: WebsiteModuleSetting[] = [
   { id: 'mod-methodology', name: 'Delivery Framework & Methodology', slug: 'delivery-framework', path: '/delivery-framework', isEnabled: true, order: 7, description: 'Four-phase zero-downtime engineering delivery lifecycle.' },
   { id: 'mod-values', name: 'Core Principles & Values', slug: 'values', path: '/values', isEnabled: true, order: 8, description: 'Engineering discipline and architectural transparency principles.' },
   { id: 'mod-connect', name: 'Connect & Consultation Form', slug: 'connect', path: '/connect-with-us', isEnabled: true, order: 9, description: 'Direct contact portal and consultation scheduling.' },
-  { id: 'mod-rfq', name: 'Request for Quote (RFQ) Engine', slug: 'rfq', path: '/request-for-quote', isEnabled: true, order: 10, description: 'Interactive multi-step enterprise RFP/RFQ submission wizard.' },
 ];
 
 export const defaultTheme: ThemeConfig = {
-  primaryColor: '#18181B', // Deep Obsidian Charcoal (Executive Modern Aesthetic)
-  secondaryColor: '#F59E0B', // Warm Amber Gold
-  accentColor: '#E11D48', // Crimson Rose
+  primaryColor: '#7A0C16', // Deep Burgundy Crimson
+  secondaryColor: '#B80F2E', // Vibrant Crimson
+  accentColor: '#D3163C', // Bright Crimson Accent
   backgroundColor: '#FFFFFF', // Clean Canvas White
   textColor: '#0F172A', // Slate Dark
-  borderColor: '#E4E4E7', // Neutral Zinc Border
-  preset: 'obsidian-amber',
+  borderColor: '#FFE4E6', // Soft Rose Border
+  preset: 'crimson-red',
 };
 
 const defaultSettings: WebsiteSettings = {
@@ -90,11 +89,10 @@ const defaultSettings: WebsiteSettings = {
 
 const defaultNavigation: NavigationItem[] = [
   { id: 'nav-1', label: 'Home', path: '/', order: 1, isVisible: true },
-  { id: 'nav-2', label: 'About', path: '/about', order: 2, isVisible: true },
-  { id: 'nav-3', label: 'Our Services', path: '/services', order: 3, isVisible: true },
-  { id: 'nav-4', label: 'Our Products', path: '/products', order: 4, isVisible: true },
-  { id: 'nav-5', label: 'Technology Insights', path: '/technology-insights', order: 5, isVisible: true },
-  { id: 'nav-6', label: 'Connect with Us', path: '/connect-with-us', order: 6, isVisible: true },
+  { id: 'nav-2', label: 'Who we are', path: '/about', order: 2, isVisible: true },
+  { id: 'nav-3', label: 'Our Portfolio', path: '/portfolio', order: 3, isVisible: true },
+  { id: 'nav-4', label: 'Resource Hub', path: '/resource-hub', order: 4, isVisible: true },
+  { id: 'nav-5', label: 'Connect With Us', path: '/connect-with-us', order: 5, isVisible: true },
 ];
 
 const defaultPages: Record<string, any> = {
@@ -103,10 +101,10 @@ const defaultPages: Record<string, any> = {
       badge: 'Engineering Tomorrow’s Autonomous Enterprise',
       title: 'Enterprise Software Engineering for Complex Systems',
       subtitle: 'We engineer mission-critical digital systems, resilient microservice ecosystems, high-availability software platforms, and dedicated engineering pods for global enterprises.',
-      primaryCtaText: 'Explore Solutions',
+      primaryCtaText: 'Explore Our Portfolio',
       primaryCtaLink: '/products',
-      secondaryCtaText: 'Request a Quote',
-      secondaryCtaLink: '/request-for-quote',
+      secondaryCtaText: 'Connect With Us',
+      secondaryCtaLink: '/connect-with-us',
       stats: [
         { label: 'Uptime Commitment', value: '99.99%' },
         { label: 'Engineering Principles', value: 'Clean Code' },
@@ -152,8 +150,8 @@ const defaultPages: Record<string, any> = {
       subtitle: 'Connect with our principal architects to evaluate your technical roadmap and build systems that scale.',
       primaryCtaText: 'Schedule Technical Consultation',
       primaryCtaLink: '/connect-with-us',
-      secondaryCtaText: 'Submit Request for Quote',
-      secondaryCtaLink: '/request-for-quote',
+      secondaryCtaText: 'Explore Products',
+      secondaryCtaLink: '/products',
     },
   },
   values: {
@@ -1065,6 +1063,41 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
 export const useCMS = () => {
   const ctx = useContext(CMSContext);
-  if (!ctx) throw new Error('useCMS must be used within a CMSProvider');
+  if (!ctx) {
+    return {
+      settings: defaultSettings,
+      navigation: defaultNavigation,
+      products: defaultProducts,
+      services: defaultServices,
+      portfolio: [],
+      insights: defaultInsights,
+      testimonials: defaultTestimonials,
+      pages: defaultPages,
+      enquiries: [],
+      rfqs: [],
+      isLoading: false,
+      isLive: false,
+      error: null,
+      refreshContent: async () => { },
+      updateSettings: async () => { },
+      toggleModule: async () => { },
+      resetThemeToDefault: async () => { },
+      applyThemePreset: async () => { },
+      reorderNavItems: async () => { },
+      updatePage: async () => { },
+      saveProduct: async () => { },
+      deleteProduct: async () => { },
+      saveService: async () => { },
+      deleteService: async () => { },
+      savePortfolio: async () => { },
+      deletePortfolio: async () => { },
+      saveInsight: async () => { },
+      deleteInsight: async () => { },
+      saveTestimonial: async () => { },
+      deleteTestimonial: async () => { },
+      saveNavItem: async () => { },
+      deleteNavItem: async () => { },
+    };
+  }
   return ctx;
 };

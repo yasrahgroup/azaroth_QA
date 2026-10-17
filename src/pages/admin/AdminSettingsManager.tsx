@@ -42,8 +42,8 @@ const defaultChatbotConfig: ChatbotConfig = {
   supportEmail: 'hello@azaroth-techhive.com',
   supportPhone: '+91 6379480931',
   position: 'bottom-right',
-  primaryColor: '#18181B',
-  secondaryColor: '#F59E0B',
+  primaryColor: '#7A0C16',
+  secondaryColor: '#B80F2E',
 };
 
 export const AdminSettingsManager: React.FC = () => {
@@ -75,12 +75,12 @@ export const AdminSettingsManager: React.FC = () => {
   const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
   const [customThemeName, setCustomThemeName] = useState('');
   const [customColors, setCustomColors] = useState<ThemeConfig>({
-    primaryColor: '#2563EB',
-    secondaryColor: '#F59E0B',
-    accentColor: '#EC4899',
+    primaryColor: '#7A0C16',
+    secondaryColor: '#B80F2E',
+    accentColor: '#D3163C',
     backgroundColor: '#FFFFFF',
     textColor: '#0F172A',
-    borderColor: '#E2E8F0',
+    borderColor: '#FFE4E6',
   });
   const [savedCustomThemes, setSavedCustomThemes] = useState<Array<{ name: string; key: string; colors: ThemeConfig }>>(() => {
     try {

@@ -14,54 +14,38 @@ import { useCMS } from '../../context/CMSContext';
 export const Hero: React.FC = () => {
   const { pages } = useCMS();
   const pageData = pages['home'];
-  const content = pageData?.content || {};
+  const heroContent = pageData?.hero || {};
 
-  const kicker = content.heroKicker || 'INNOVATION · TECHNOLOGY · EXCELLENCE';
-  const ctaServicesText = content.ctaServicesText || 'Explore Our Services';
-  const ctaContactText = content.ctaContactText || 'Contact Us';
+  const kicker = heroContent.badge || '- DRIVING DIGITAL EXCELLENCE -';
+  const ctaServicesText = heroContent.primaryCtaText || 'Explore Services';
+  const ctaContactText = heroContent.secondaryCtaText || 'Get in Touch';
 
   return (
     <section
       style={{
-        backgroundColor: 'var(--color-canvas-bg, #FFFFFF)',
+        backgroundColor: '#FFFFFF',
         paddingTop: '4.5rem',
         paddingBottom: '5.5rem',
         position: 'relative',
         overflow: 'hidden',
       }}
-      aria-label="Hero Section"
+      aria-label="Introduction & Primary Value Proposition"
     >
-      {/* Subtle organic ambient aura matching reference */}
+      {/* Subtle Crimson Gradient Ambient Backlight */}
       <div
         style={{
           position: 'absolute',
           top: '-10%',
           right: '5%',
-          width: '550px',
-          height: '550px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, var(--color-primary-glow, rgba(24, 24, 27, 0.05)) 0%, var(--color-brand-gold-light, rgba(245, 158, 11, 0.04)) 40%, transparent 70%)',
-          filter: 'blur(50px)',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle at center, rgba(184, 15, 46, 0.05) 0%, rgba(211, 22, 60, 0.02) 40%, transparent 70%)',
           pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '5%',
-          left: '10%',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, var(--color-brand-gold-light, rgba(245, 158, 11, 0.03)) 0%, transparent 65%)',
-          filter: 'blur(60px)',
-          pointerEvents: 'none',
-          zIndex: 0,
+          zIndex: 1,
         }}
       />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div
           style={{
             display: 'grid',
@@ -70,9 +54,9 @@ export const Hero: React.FC = () => {
             alignItems: 'center',
           }}
         >
-          {/* Left Column: Copy & Actions */}
+          {/* Left Column: Typography & CTAs */}
           <div style={{ maxWidth: '580px' }}>
-            {/* Upper Kicker */}
+            {/* Kicker Pill */}
             <div
               style={{
                 display: 'inline-flex',
@@ -80,7 +64,7 @@ export const Hero: React.FC = () => {
                 gap: '0.5rem',
                 fontSize: '0.8125rem',
                 fontWeight: 700,
-                color: 'var(--color-brand-gold, #F59E0B)',
+                color: '#99152B',
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 marginBottom: '1.25rem',
@@ -103,7 +87,7 @@ export const Hero: React.FC = () => {
               Technology That{' '}
               <span
                 style={{
-                  background: 'var(--gradient-brand, linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-accent, #7C3AED) 50%, var(--color-brand-gold, #F59E0B) 100%))',
+                  background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   display: 'inline-block',
@@ -136,7 +120,7 @@ export const Hero: React.FC = () => {
                 flexWrap: 'wrap',
               }}
             >
-              {/* Primary Action Button (Solid Pill in Secondary/Gold or Primary) */}
+              {/* Primary Action Button (Crimson Red Gradient) */}
               <Link
                 to="/services"
                 style={{
@@ -145,12 +129,12 @@ export const Hero: React.FC = () => {
                   gap: '0.625rem',
                   padding: '0.9rem 1.85rem',
                   borderRadius: '9999px',
-                  backgroundColor: 'var(--color-brand-gold, #F59E0B)',
-                  color: 'var(--color-gold-button-text, #FFFFFF)',
+                  background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
+                  color: '#FFFFFF',
                   fontWeight: 600,
                   fontSize: '0.975rem',
                   textDecoration: 'none',
-                  boxShadow: '0 6px 20px -2px var(--color-brand-gold-shadow, rgba(245, 158, 11, 0.35))',
+                  boxShadow: '0 6px 20px -2px rgba(184, 15, 46, 0.4)',
                   transition: 'all 200ms ease-out',
                 }}
                 className="hover:scale-105 hover:opacity-95"
@@ -159,7 +143,7 @@ export const Hero: React.FC = () => {
                 <ArrowRight size={17} />
               </Link>
 
-              {/* Secondary Action Button (Outline Pill in Secondary/Gold) */}
+              {/* Secondary Action Button (Outline Pill in Crimson Red) */}
               <Link
                 to="/connect-with-us"
                 style={{
@@ -169,14 +153,14 @@ export const Hero: React.FC = () => {
                   padding: '0.85rem 1.75rem',
                   borderRadius: '9999px',
                   backgroundColor: 'transparent',
-                  color: 'var(--color-brand-gold-text, var(--color-brand-gold, #F59E0B))',
-                  border: '1.5px solid var(--color-brand-gold, #F59E0B)',
+                  color: '#99152B',
+                  border: '1.5px solid #99152B',
                   fontWeight: 600,
                   fontSize: '0.975rem',
                   textDecoration: 'none',
                   transition: 'all 200ms ease-out',
                 }}
-                className="hover:bg-amber-50 hover:bg-opacity-20"
+                className="hover:bg-rose-50 hover:bg-opacity-40"
               >
                 <span>{ctaContactText}</span>
                 <ArrowRight size={17} />
@@ -268,25 +252,26 @@ export const Hero: React.FC = () => {
               />
             </svg>
 
-            {/* Floating Tech Squircle Badges matching reference */}
+            {/* Floating Tech Squircle Badges with zero overlap and organic float animations */}
             {/* 1. Web Development */}
             <div
               style={{
                 position: 'absolute',
                 top: '-1.5rem',
-                left: '6%',
+                left: '2%',
                 zIndex: 4,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
                 backdropFilter: 'blur(8px)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: '12px',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                boxShadow: '0 8px 20px -4px rgba(124, 58, 237, 0.15)',
+                boxShadow: '0 10px 25px -4px rgba(124, 58, 237, 0.18)',
+                animation: 'heroBadgeFloat1 4.5s ease-in-out infinite',
               }}
-              className="animate-pulse"
+              className="hero-badge-interactive"
             >
               <div
                 style={{
@@ -302,28 +287,30 @@ export const Hero: React.FC = () => {
               >
                 <Code2 size={16} />
               </div>
-              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B' }}>
+              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>
                 Web Development
               </span>
             </div>
 
-            {/* 2. Mobile Apps */}
+            {/* 2. Mobile Apps - Raised up to -3.25rem and positioned at 34% with zero overlap */}
             <div
               style={{
                 position: 'absolute',
-                top: '-2.25rem',
-                left: '42%',
+                top: '-3.25rem',
+                left: '34%',
                 zIndex: 4,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
                 backdropFilter: 'blur(8px)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: '12px',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                boxShadow: '0 8px 20px -4px rgba(13, 148, 136, 0.15)',
+                boxShadow: '0 10px 25px -4px rgba(13, 148, 136, 0.18)',
+                animation: 'heroBadgeFloat2 5s ease-in-out infinite 0.6s',
               }}
+              className="hero-badge-interactive"
             >
               <div
                 style={{
@@ -339,28 +326,30 @@ export const Hero: React.FC = () => {
               >
                 <Smartphone size={16} />
               </div>
-              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B' }}>
+              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>
                 Mobile Apps
               </span>
             </div>
 
-            {/* 3. Cloud Solutions */}
+            {/* 3. Cloud Solutions - Placed at right: 2% */}
             <div
               style={{
                 position: 'absolute',
-                top: '-1.25rem',
-                right: '12%',
+                top: '-1.5rem',
+                right: '2%',
                 zIndex: 4,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
                 backdropFilter: 'blur(8px)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: '12px',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                boxShadow: '0 8px 20px -4px rgba(2, 132, 199, 0.15)',
+                boxShadow: '0 10px 25px -4px rgba(2, 132, 199, 0.18)',
+                animation: 'heroBadgeFloat3 4.2s ease-in-out infinite 1.2s',
               }}
+              className="hero-badge-interactive"
             >
               <div
                 style={{
@@ -376,7 +365,7 @@ export const Hero: React.FC = () => {
               >
                 <Cloud size={16} />
               </div>
-              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B' }}>
+              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>
                 Cloud Solutions
               </span>
             </div>
@@ -385,26 +374,28 @@ export const Hero: React.FC = () => {
             <div
               style={{
                 position: 'absolute',
-                top: '25%',
-                right: '-1.5rem',
+                top: '28%',
+                right: '-1.25rem',
                 zIndex: 4,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
                 backdropFilter: 'blur(8px)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: '12px',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                boxShadow: '0 8px 20px -4px rgba(225, 29, 72, 0.15)',
+                boxShadow: '0 10px 25px -4px rgba(184, 15, 46, 0.18)',
+                animation: 'heroBadgeFloat1 4.8s ease-in-out infinite 1.8s',
               }}
+              className="hero-badge-interactive"
             >
               <div
                 style={{
                   width: '28px',
                   height: '28px',
                   borderRadius: '8px',
-                  backgroundColor: '#E11D48',
+                  backgroundColor: '#B80F2E',
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
@@ -413,7 +404,7 @@ export const Hero: React.FC = () => {
               >
                 <PenTool size={16} />
               </div>
-              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B' }}>
+              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>
                 UI/UX Design
               </span>
             </div>
@@ -422,19 +413,21 @@ export const Hero: React.FC = () => {
             <div
               style={{
                 position: 'absolute',
-                top: '55%',
+                top: '65%',
                 right: '-0.75rem',
                 zIndex: 4,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
                 backdropFilter: 'blur(8px)',
                 padding: '0.5rem 0.85rem',
                 borderRadius: '12px',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                boxShadow: '0 8px 20px -4px rgba(6, 182, 212, 0.15)',
+                boxShadow: '0 10px 25px -4px rgba(6, 182, 212, 0.18)',
+                animation: 'heroBadgeFloat2 4.4s ease-in-out infinite 2.2s',
               }}
+              className="hero-badge-interactive"
             >
               <div
                 style={{
@@ -450,13 +443,40 @@ export const Hero: React.FC = () => {
               >
                 <BarChart3 size={16} />
               </div>
-              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B' }}>
+              <span style={{ fontSize: '0.775rem', fontWeight: 700, color: '#1E293B', whiteSpace: 'nowrap' }}>
                 Analytics
               </span>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes heroBadgeFloat1 {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-7px); }
+        }
+        @keyframes heroBadgeFloat2 {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-9px); }
+        }
+        @keyframes heroBadgeFloat3 {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(6px); }
+        }
+        .hero-badge-interactive {
+          transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease-out;
+        }
+        .hero-badge-interactive:hover {
+          transform: scale(1.06) translateY(-4px) !important;
+          box-shadow: 0 16px 32px -4px rgba(0, 0, 0, 0.15) !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-badge-interactive {
+            animation: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -1,47 +1,112 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { 
+  Menu, 
+  X, 
+  ArrowRight, 
+  ChevronDown, 
+  Users, 
+  ShieldCheck, 
+  Workflow, 
+  Layers, 
+  Cpu 
+} from 'lucide-react';
 import logoImg from '../../assets/Logo.png';
 import { useCMS } from '../../context/CMSContext';
 
-interface NavItem {
+export interface SubNavItem {
+  name: string;
+  href: string;
+  description: string;
+  icon: React.ReactNode;
+}
+
+export interface NavItem {
   name: string;
   href: string;
   isActive: (pathname: string) => boolean;
+  children?: SubNavItem[];
 }
 
-const navItems: NavItem[] = [
+export const siteNavItems: NavItem[] = [
   {
     name: 'Home',
     href: '/',
     isActive: (p) => p === '/',
   },
   {
-    name: 'Services',
-    href: '/services',
-    isActive: (p) => p.startsWith('/services'),
-  },
-  {
-    name: 'About',
+    name: 'Who we are',
     href: '/about',
-    isActive: (p) => p.startsWith('/about'),
+    isActive: (p) =>
+      p.startsWith('/about') ||
+      p.startsWith('/values') ||
+      p.startsWith('/delivery-framework') ||
+      p.startsWith('/who-we-are'),
+    children: [
+      {
+        name: 'About Us',
+        href: '/about',
+        description: 'Our story, executive leadership, and long-horizon vision',
+        icon: <Users size={18} style={{ color: '#D3163C' }} />,
+      },
+      {
+        name: 'Our Values',
+        href: '/values',
+        description: 'Guiding principles behind our architecture & code quality',
+        icon: <ShieldCheck size={18} style={{ color: '#D3163C' }} />,
+      },
+      {
+        name: 'Delivery Framework',
+        href: '/delivery-framework',
+        description: 'Disciplined 4-phase zero-downtime engineering lifecycle',
+        icon: <Workflow size={18} style={{ color: '#D3163C' }} />,
+      },
+    ],
   },
   {
-    name: 'Projects',
+    name: 'Our Portfolio',
     href: '/portfolio',
-    isActive: (p) => p.startsWith('/portfolio') || p.startsWith('/projects'),
+    isActive: (p) =>
+      p.startsWith('/portfolio') ||
+      p.startsWith('/products') ||
+      p.startsWith('/services') ||
+      p.startsWith('/projects'),
+    children: [
+      {
+        name: 'Explore Products',
+        href: '/products',
+        description: 'Pre-architected, enterprise-ready software platforms',
+        icon: <Layers size={18} style={{ color: '#D3163C' }} />,
+      },
+      {
+        name: 'Explore Services',
+        href: '/services',
+        description: 'Dedicated engineering pods, modern SLAs & cloud architecture',
+        icon: <Cpu size={18} style={{ color: '#D3163C' }} />,
+      },
+    ],
   },
   {
-    name: 'Contact',
+    name: 'Resource Hub',
+    href: '/resource-hub',
+    isActive: (p) =>
+      p.startsWith('/resource-hub') ||
+      p.startsWith('/technology-insights') ||
+      p.startsWith('/insights'),
+  },
+  {
+    name: 'Connect With Us',
     href: '/connect-with-us',
-    isActive: (p) => p.startsWith('/connect-with-us') || p === '/contact',
+    isActive: (p) =>
+      p.startsWith('/connect-with-us') ||
+      p === '/contact' ||
+      p === '/connect',
   },
 ];
 
-const GOLD = 'var(--color-brand-gold, #F59E0B)';
-const GOLD_DARK = 'var(--color-brand-gold, #D97706)';
-const MAROON = 'var(--color-primary, #18181B)';
-const BRAND_PRIMARY = 'var(--color-primary, #18181B)';
+const CRIMSON_DEEP = '#7A0C16';
+const CRIMSON_VIBRANT = '#B80F2E';
+const CRIMSON_ACCENT = '#D3163C';
 
 const getStartedButtonStyle: React.CSSProperties = {
   display: 'inline-flex',
@@ -50,29 +115,36 @@ const getStartedButtonStyle: React.CSSProperties = {
   gap: '0.5rem',
   padding: '0.625rem 1.4rem',
   borderRadius: '9999px',
-  background: 'transparent',
-  color: 'var(--color-brand-gold-text, var(--color-brand-gold, #F59E0B))',
+  background: 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)',
+  color: '#FFFFFF',
   fontWeight: 600,
   fontSize: '0.9375rem',
   textDecoration: 'none',
-  border: '1.5px solid var(--color-brand-gold, #F59E0B)',
+  border: 'none',
+  boxShadow: '0 4px 14px 0 rgba(184, 15, 46, 0.35)',
   transition: 'all 200ms ease-out',
 };
 
 export const Header: React.FC = () => {
-  const { navigation: cmsNavigation, settings } = useCMS();
+  const { settings } = useCMS();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({
+    'Who we are': true,
+    'Our Portfolio': true,
+  });
+
   const location = useLocation();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const currentNavItems = (cmsNavigation && cmsNavigation.length > 0)
-    ? cmsNavigation.filter(item => item.isVisible).map(item => ({
-        name: item.label,
-        href: item.path,
-        isActive: (p: string) => p === item.path || (item.path !== '/' && p.startsWith(item.path)),
-      }))
-    : navItems;
+  // Close menus on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname]);
 
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 15);
@@ -80,33 +152,53 @@ export const Header: React.FC = () => {
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location.pathname]);
-
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
-
     return () => {
       document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
 
+  // Close dropdown on Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMobileMenuOpen(false);
+        setActiveDropdown(null);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  const handleMouseEnter = (name: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setActiveDropdown(name);
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 180);
+  };
+
+  const toggleMobileAccordion = (name: string) => {
+    setMobileExpanded((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
 
   return (
     <header
@@ -122,7 +214,7 @@ export const Header: React.FC = () => {
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: `1px solid var(--color-border, #E4E4E7)`,
         boxShadow: isScrolled
-          ? '0 4px 20px -2px rgba(24, 24, 27, 0.08)'
+          ? '0 4px 20px -2px rgba(122, 12, 22, 0.08)'
           : 'none',
         transition: 'all 200ms ease-out',
       }}
@@ -152,13 +244,13 @@ export const Header: React.FC = () => {
         >
           <img
             src={settings?.logoUrl || logoImg}
-            alt={settings?.companyName || "Azaroth Tech-Hive Logo"}
+            alt={settings?.companyName || 'Azaroth Tech-Hive Logo'}
             style={{
               maxHeight: '2.5rem',
               maxWidth: '8rem',
               objectFit: 'contain',
               flexShrink: 0,
-              filter: 'drop-shadow(0 2px 4px rgba(24, 24, 27, 0.15))',
+              filter: 'drop-shadow(0 2px 4px rgba(122, 12, 22, 0.15))',
             }}
           />
 
@@ -167,7 +259,7 @@ export const Header: React.FC = () => {
               style={{
                 fontSize: '1.25rem',
                 fontWeight: 800,
-                color: MAROON,
+                color: CRIMSON_DEEP,
                 fontFamily: 'serif',
                 letterSpacing: '0.04em',
                 lineHeight: 1.1,
@@ -180,7 +272,7 @@ export const Header: React.FC = () => {
               style={{
                 fontSize: '0.625rem',
                 fontWeight: 700,
-                color: GOLD_DARK,
+                color: '#000000',
                 letterSpacing: '0.22em',
                 textTransform: 'uppercase',
               }}
@@ -193,10 +285,195 @@ export const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav
           aria-label="Primary Navigation"
-          className="hidden md:flex items-center gap-5 lg:gap-7"
+          className="hidden md:flex items-center gap-4 lg:gap-6"
         >
-          {currentNavItems.map((item) => {
+          {siteNavItems.map((item) => {
             const active = item.isActive(location.pathname);
+            const isDropdownOpen = activeDropdown === item.name;
+
+            if (item.children && item.children.length > 0) {
+              return (
+                <div
+                  key={item.name}
+                  style={{ position: 'relative' }}
+                  onMouseEnter={() => handleMouseEnter(item.name)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+                    <Link
+                      to={item.href}
+                      aria-current={active ? 'page' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={isDropdownOpen}
+                      style={{
+                        fontSize: '0.9375rem',
+                        fontWeight: active ? 700 : 600,
+                        color: active ? CRIMSON_DEEP : '#374151',
+                        padding: '0.65rem 0.25rem',
+                        textDecoration: 'none',
+                        position: 'relative',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        transition: 'color 160ms ease-out',
+                      }}
+                      className="azaroth-nav-link"
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown
+                        size={15}
+                        style={{
+                          transition: 'transform 200ms ease-out',
+                          transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                          color: active ? CRIMSON_VIBRANT : '#64748B',
+                        }}
+                      />
+
+                      {/* Active indicator bar */}
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute',
+                          bottom: '-2px',
+                          left: 0,
+                          right: 0,
+                          height: '2.5px',
+                          background: 'linear-gradient(90deg, #7A0C16 0%, #D3163C 100%)',
+                          borderRadius: '2px',
+                          transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                          transformOrigin: 'left',
+                          transition: 'transform 200ms ease-out',
+                        }}
+                        className="azaroth-nav-indicator"
+                      />
+                    </Link>
+                  </div>
+
+                  {/* Dropdown Menu Overlay */}
+                  {isDropdownOpen && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: item.name === 'Our Portfolio' ? '-1.5rem' : '0',
+                        paddingTop: '0.65rem',
+                        zIndex: 110,
+                        minWidth: '22rem',
+                      }}
+                      onMouseEnter={() => handleMouseEnter(item.name)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: '#FFFFFF',
+                          borderRadius: '1rem',
+                          border: '1px solid #E4E4E7',
+                          boxShadow: '0 20px 40px -15px rgba(122, 12, 22, 0.15), 0 0 0 1px rgba(0,0,0,0.03)',
+                          padding: '0.65rem',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0.35rem',
+                          backdropFilter: 'blur(20px)',
+                        }}
+                        className="azaroth-dropdown-menu"
+                      >
+                        {item.children.map((sub) => {
+                          const isSubActive = location.pathname === sub.href;
+                          return (
+                            <Link
+                              key={sub.name}
+                              to={sub.href}
+                              onClick={() => setActiveDropdown(null)}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                                gap: '0.75rem',
+                                padding: '0.65rem 0.75rem',
+                                borderRadius: '0.625rem',
+                                textDecoration: 'none',
+                                backgroundColor: isSubActive ? 'rgba(184, 15, 46, 0.08)' : 'transparent',
+                                transition: 'all 160ms ease-out',
+                              }}
+                              className="azaroth-dropdown-item"
+                            >
+                              <div
+                                style={{
+                                  padding: '0.45rem',
+                                  borderRadius: '8px',
+                                  backgroundColor: isSubActive ? 'rgba(184, 15, 46, 0.16)' : '#FDF2F4',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  flexShrink: 0,
+                                  marginTop: '2px',
+                                }}
+                              >
+                                {sub.icon}
+                              </div>
+                              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <span
+                                  style={{
+                                    fontSize: '0.90rem',
+                                    fontWeight: 700,
+                                    color: isSubActive ? CRIMSON_DEEP : '#18181B',
+                                    lineHeight: 1.3,
+                                  }}
+                                  className="dropdown-item-title"
+                                >
+                                  {sub.name}
+                                </span>
+                                <span
+                                  style={{
+                                    fontSize: '0.75rem',
+                                    color: '#64748B',
+                                    lineHeight: 1.4,
+                                    marginTop: '2px',
+                                  }}
+                                >
+                                  {sub.description}
+                                </span>
+                              </div>
+                            </Link>
+                          );
+                        })}
+
+                        {/* Optional portfolio footer */}
+                        {item.name === 'Our Portfolio' && (
+                          <div
+                            style={{
+                              borderTop: '1px solid #FDF2F4',
+                              paddingTop: '0.5rem',
+                              marginTop: '0.25rem',
+                              display: 'flex',
+                              justifyContent: 'flex-end',
+                            }}
+                          >
+                            <Link
+                              to="/portfolio"
+                              onClick={() => setActiveDropdown(null)}
+                              style={{
+                                fontSize: '0.78rem',
+                                fontWeight: 700,
+                                color: CRIMSON_VIBRANT,
+                                textDecoration: 'none',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.35rem',
+                                padding: '0.25rem 0.5rem',
+                              }}
+                              className="hover:underline"
+                            >
+                              <span>View All Projects & Case Studies</span>
+                              <ArrowRight size={13} />
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            }
 
             return (
               <Link
@@ -206,7 +483,7 @@ export const Header: React.FC = () => {
                 style={{
                   fontSize: '0.9375rem',
                   fontWeight: active ? 700 : 600,
-                  color: active ? BRAND_PRIMARY : '#374151',
+                  color: active ? CRIMSON_DEEP : '#374151',
                   padding: '0.65rem 0.25rem',
                   textDecoration: 'none',
                   position: 'relative',
@@ -218,7 +495,7 @@ export const Header: React.FC = () => {
               >
                 <span>{item.name}</span>
 
-                {/* Dynamic brand gradient navigation indicator */}
+                {/* Dynamic crimson gradient navigation indicator */}
                 <span
                   aria-hidden="true"
                   style={{
@@ -227,7 +504,7 @@ export const Header: React.FC = () => {
                     left: 0,
                     right: 0,
                     height: '2.5px',
-                    background: 'var(--color-brand-gold, #F59E0B)',
+                    background: 'linear-gradient(90deg, #7A0C16 0%, #D3163C 100%)',
                     borderRadius: '2px',
                     transform: active ? 'scaleX(1)' : 'scaleX(0)',
                     transformOrigin: 'left',
@@ -252,7 +529,7 @@ export const Header: React.FC = () => {
           <Link
             to="/connect-with-us"
             style={getStartedButtonStyle}
-            className="hover:opacity-90 hover:shadow-sm"
+            className="hover:opacity-95 hover:shadow-lg hover:scale-105"
           >
             <span>Get Started</span>
             <ArrowRight size={15} />
@@ -267,7 +544,7 @@ export const Header: React.FC = () => {
             }
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-amber-200 bg-white text-rose-950"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-rose-200 bg-white text-rose-950"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -295,39 +572,140 @@ export const Header: React.FC = () => {
             style={{
               backgroundColor: '#FFFFFF',
               padding: '1.25rem',
-              borderBottom: `2px solid ${GOLD}`,
+              borderBottom: `2px solid ${CRIMSON_VIBRANT}`,
               boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.12)',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.35rem',
+              gap: '0.4rem',
               maxHeight: 'calc(100vh - 4.75rem)',
               overflowY: 'auto',
             }}
             onClick={(event) => event.stopPropagation()}
           >
-            {currentNavItems.map((item) => {
+            {siteNavItems.map((item) => {
               const active = item.isActive(location.pathname);
+              const hasChildren = item.children && item.children.length > 0;
+              const isExpanded = mobileExpanded[item.name];
+
+              if (hasChildren) {
+                return (
+                  <div key={item.name} style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '8px',
+                        backgroundColor: active
+                          ? 'rgba(184, 15, 46, 0.06)'
+                          : 'transparent',
+                        borderLeft: active ? `3px solid ${CRIMSON_ACCENT}` : '3px solid transparent',
+                      }}
+                    >
+                      <Link
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          fontWeight: active ? 700 : 600,
+                          fontSize: '1rem',
+                          color: active ? CRIMSON_DEEP : '#1F2937',
+                          textDecoration: 'none',
+                          flex: 1,
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => toggleMobileAccordion(item.name)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: '0.25rem 0.5rem',
+                          cursor: 'pointer',
+                          color: '#64748B',
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                        aria-label={`Toggle ${item.name} submenu`}
+                      >
+                        <ChevronDown
+                          size={18}
+                          style={{
+                            transition: 'transform 200ms ease-out',
+                            transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                          }}
+                        />
+                      </button>
+                    </div>
+
+                    {/* Accordion Sub-items */}
+                    {isExpanded && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '0.25rem',
+                          paddingLeft: '1.25rem',
+                          paddingTop: '0.35rem',
+                          paddingBottom: '0.35rem',
+                          borderLeft: '2px dashed #FECDD3',
+                          marginLeft: '1.25rem',
+                        }}
+                      >
+                        {item.children?.map((sub) => {
+                          const isSubActive = location.pathname === sub.href;
+                          return (
+                            <Link
+                              key={sub.name}
+                              to={sub.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              style={{
+                                padding: '0.55rem 0.75rem',
+                                borderRadius: '6px',
+                                textDecoration: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.625rem',
+                                backgroundColor: isSubActive ? 'rgba(184, 15, 46, 0.1)' : 'transparent',
+                                color: isSubActive ? CRIMSON_VIBRANT : '#4B5563',
+                                fontWeight: isSubActive ? 700 : 500,
+                                fontSize: '0.90rem',
+                              }}
+                            >
+                              {sub.icon}
+                              <span>{sub.name}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
 
               return (
                 <Link
                   key={item.name}
                   to={item.href}
                   aria-current={active ? 'page' : undefined}
+                  onClick={() => setMobileMenuOpen(false)}
                   style={{
                     padding: '0.8rem 1rem',
                     borderRadius: '8px',
                     fontWeight: active ? 700 : 600,
                     fontSize: '1rem',
-                    color: active ? BRAND_PRIMARY : '#374151',
+                    color: active ? CRIMSON_DEEP : '#374151',
                     backgroundColor: active
-                      ? 'rgba(24, 24, 27, 0.06)'
+                      ? 'rgba(184, 15, 46, 0.06)'
                       : 'transparent',
                     textDecoration: 'none',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     borderLeft: active
-                      ? `3px solid ${GOLD}`
+                      ? `3px solid ${CRIMSON_ACCENT}`
                       : '3px solid transparent',
                   }}
                 >
@@ -340,7 +718,7 @@ export const Header: React.FC = () => {
                         width: '7px',
                         height: '7px',
                         borderRadius: '50%',
-                        backgroundColor: BRAND_PRIMARY,
+                        backgroundColor: CRIMSON_DEEP,
                       }}
                     />
                   )}
@@ -358,6 +736,7 @@ export const Header: React.FC = () => {
 
             <Link
               to="/connect-with-us"
+              onClick={() => setMobileMenuOpen(false)}
               style={{
                 ...getStartedButtonStyle,
                 width: '100%',
@@ -375,30 +754,31 @@ export const Header: React.FC = () => {
       {/* Theme-matched hover and keyboard focus styles */}
       <style>{`
         .azaroth-nav-link:hover {
-          color: ${BRAND_PRIMARY} !important;
+          color: ${CRIMSON_DEEP} !important;
         }
 
         .azaroth-nav-link:hover .azaroth-nav-indicator {
           transform: scaleX(1) !important;
         }
 
-        .azaroth-nav-link:focus-visible,
-        .azaroth-rfq-button:focus-visible {
-          outline: 3px solid var(--color-primary, #18181B);
-          outline-offset: 4px;
+        .azaroth-dropdown-item:hover {
+          background-color: rgba(184, 15, 46, 0.08) !important;
         }
 
-        .azaroth-rfq-button:hover {
-          background: var(--color-primary-button-hover, #27272A) !important;
-          border-color: #27272A !important;
-          box-shadow: 0 6px 18px rgba(24, 24, 27, 0.3) !important;
-          transform: translateY(-1px);
+        .azaroth-dropdown-item:hover .dropdown-item-title {
+          color: ${CRIMSON_ACCENT} !important;
+        }
+
+        .azaroth-nav-link:focus-visible,
+        .azaroth-rfq-button:focus-visible {
+          outline: 3px solid ${CRIMSON_DEEP};
+          outline-offset: 4px;
         }
 
         @media (prefers-reduced-motion: reduce) {
           .azaroth-nav-link,
           .azaroth-nav-indicator,
-          .azaroth-rfq-button {
+          .azaroth-dropdown-menu {
             transition: none !important;
           }
         }

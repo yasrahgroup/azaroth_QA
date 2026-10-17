@@ -4,6 +4,7 @@ export type ProductStatusType = 'Live' | 'Under Development' | 'PUBLISHED' | 'DR
 
 interface ProductStatusBadgeProps {
   status?: ProductStatusType;
+  colorScheme?: 'green' | 'blue' | 'amber';
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   showDot?: boolean;
@@ -13,11 +14,13 @@ interface ProductStatusBadgeProps {
 /**
  * ProductStatusBadge
  * Renders consistent, accessible color-coded badges for product statuses:
- * - Live: Green background (#DCFCE7) with dark green text (#15803D) and green border (#86EFAC)
- * - Under Development: Amber background (#FEF3C7) with dark amber text (#B45309) and amber border (#FDE68A)
+ * - Green (Live): #DCFCE7 bg, #15803D text, #86EFAC border
+ * - Blue (Under Development / E-commerce): #EFF6FF bg, #1D4ED8 text, #BFDBFE border
+ * - Amber (Under Development / ProDLMs, Medical): #FFFBEB bg, #B45309 text, #FDE68A border
  */
 export const ProductStatusBadge: React.FC<ProductStatusBadgeProps> = ({
   status = 'Under Development',
+  colorScheme,
   className = '',
   size = 'md',
   showDot = true,
@@ -25,26 +28,44 @@ export const ProductStatusBadge: React.FC<ProductStatusBadgeProps> = ({
 }) => {
   const normalized = (status || '').trim().toLowerCase();
   const isLive = normalized === 'live' || normalized === 'published';
-  const isUnderDev = normalized === 'under development' || normalized === 'in development' || normalized === 'development' || normalized === 'draft';
+  const isReady = normalized === 'ready to deploy' || normalized === 'ready';
 
-  // Config based on status
+  // Determine effective color scheme
+  let scheme: 'green' | 'blue' | 'amber' = 'amber';
+  if (colorScheme) {
+    scheme = colorScheme;
+  } else if (isLive) {
+    scheme = 'green';
+  } else if (isReady) {
+    scheme = 'blue';
+  } else {
+    scheme = 'amber';
+  }
+
   let label = status || 'Under Development';
-  let bg = '#FEF3C7'; // Amber background
-  let text = '#B45309'; // Dark amber text
-  let border = '#FDE68A'; // Amber border
+  let bg = '#FFFBEB';
+  let text = '#B45309';
+  let border = '#FDE68A';
   let dotColor = '#D97706';
   let pulse = true;
 
-  if (isLive) {
-    label = 'Live';
-    bg = '#DCFCE7'; // Green background
-    text = '#15803D'; // Dark green text
-    border = '#86EFAC'; // Green border
+  if (scheme === 'green') {
+    label = isLive ? 'Live' : status;
+    bg = '#DCFCE7';
+    text = '#15803D';
+    border = '#86EFAC';
     dotColor = '#16A34A';
     pulse = false;
-  } else if (isUnderDev || !status) {
-    label = 'Under Development';
-    bg = '#FEF3C7';
+  } else if (scheme === 'blue') {
+    label = isReady ? 'Ready to Deploy' : status;
+    bg = '#EFF6FF';
+    text = '#1D4ED8';
+    border = '#BFDBFE';
+    dotColor = '#2563EB';
+    pulse = true;
+  } else {
+    // amber
+    bg = '#FFFBEB';
     text = '#B45309';
     border = '#FDE68A';
     dotColor = '#D97706';

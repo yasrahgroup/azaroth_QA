@@ -27,7 +27,7 @@ const servicePalettes = [
   { bg: '#F5F3FF', color: '#7C3AED' }, // Web Dev - Purple
   { bg: '#F0FDFA', color: '#0D9488' }, // Mobile - Teal/Emerald
   { bg: '#F0F9FF', color: '#0284C7' }, // Cloud - Sky Blue
-  { bg: '#FFFBEB', color: '#D97706' }, // IT Consulting - Amber
+  { bg: '#FFE4E6', color: '#B80F2E' }, // IT Consulting - Crimson
   { bg: '#FAF5FF', color: '#9333EA' }, // Cybersecurity - Indigo/Purple
   { bg: '#FFF1F2', color: '#E11D48' }, // UI/UX - Rose
 ];
@@ -65,8 +65,8 @@ const services: ServiceItem[] = [
     title: 'IT Consulting',
     description: 'Strategic technology consulting to drive efficiency and growth.',
     icon: <Settings size={24} />,
-    iconBg: '#FFFBEB',
-    iconColor: '#D97706',
+    iconBg: '#FFE4E6',
+    iconColor: '#B80F2E',
     link: '/services#it-consulting',
   },
   {
@@ -139,7 +139,7 @@ export const FeaturedSolutions: React.FC = () => {
               gap: '0.5rem',
               fontSize: '0.8125rem',
               fontWeight: 700,
-              color: 'var(--color-brand-gold, #F59E0B)',
+              color: '#99152B',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
               marginBottom: '0.75rem',
@@ -161,7 +161,7 @@ export const FeaturedSolutions: React.FC = () => {
             Comprehensive{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-accent, #7C3AED) 50%, var(--color-brand-gold, #F59E0B) 100%)',
+                background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}

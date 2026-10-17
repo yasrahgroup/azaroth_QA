@@ -14,6 +14,7 @@ import {
   creativePortfolioImg 
 } from '../assets/images';
 import { productsCatalog } from '../data/productsData';
+import { ProductStatusBadge } from '../components/common/ProductStatusBadge';
 import { useCMS } from '../context/CMSContext';
 
 interface CaseStudy {
@@ -122,7 +123,7 @@ export const Portfolio: React.FC = () => {
             right: '20%',
             width: '500px',
             height: '400px',
-            background: 'radial-gradient(circle at center, rgba(198, 138, 61, 0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle at center, rgba(184, 15, 46, 0.06) 0%, transparent 70%)',
             pointerEvents: 'none',
           }}
         />
@@ -134,7 +135,7 @@ export const Portfolio: React.FC = () => {
               gap: '0.5rem',
               fontSize: '0.8125rem',
               fontWeight: 700,
-              color: '#C68A3D',
+              color: '#99152B',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               marginBottom: '1rem',
@@ -154,7 +155,7 @@ export const Portfolio: React.FC = () => {
             Software Solutions &amp;{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 60%, #9333EA 100%)',
+                background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -173,8 +174,8 @@ export const Portfolio: React.FC = () => {
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '9999px',
-                border: activeTab === 'all' ? '1.5px solid #C68A3D' : '1px solid #E2E8F0',
-                backgroundColor: activeTab === 'all' ? '#C68A3D' : '#FFFFFF',
+                border: activeTab === 'all' ? '1.5px solid #99152B' : '1px solid #E2E8F0',
+                backgroundColor: activeTab === 'all' ? '#99152B' : '#FFFFFF',
                 color: activeTab === 'all' ? '#FFFFFF' : '#475569',
                 fontWeight: 600,
                 fontSize: '0.875rem',
@@ -189,8 +190,8 @@ export const Portfolio: React.FC = () => {
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '9999px',
-                border: activeTab === 'projects' ? '1.5px solid #C68A3D' : '1px solid #E2E8F0',
-                backgroundColor: activeTab === 'projects' ? '#C68A3D' : '#FFFFFF',
+                border: activeTab === 'projects' ? '1.5px solid #99152B' : '1px solid #E2E8F0',
+                backgroundColor: activeTab === 'projects' ? '#99152B' : '#FFFFFF',
                 color: activeTab === 'projects' ? '#FFFFFF' : '#475569',
                 fontWeight: 600,
                 fontSize: '0.875rem',
@@ -205,8 +206,8 @@ export const Portfolio: React.FC = () => {
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '9999px',
-                border: activeTab === 'platforms' ? '1.5px solid #C68A3D' : '1px solid #E2E8F0',
-                backgroundColor: activeTab === 'platforms' ? '#C68A3D' : '#FFFFFF',
+                border: activeTab === 'platforms' ? '1.5px solid #99152B' : '1px solid #E2E8F0',
+                backgroundColor: activeTab === 'platforms' ? '#99152B' : '#FFFFFF',
                 color: activeTab === 'platforms' ? '#FFFFFF' : '#475569',
                 fontWeight: 600,
                 fontSize: '0.875rem',
@@ -220,6 +221,75 @@ export const Portfolio: React.FC = () => {
         </div>
       </section>
 
+      {/* Our Portfolio: In-Page Navigation Bar */}
+      <nav
+        aria-label="Our Portfolio In-Page Navigation"
+        style={{
+          backgroundColor: '#FFFFFF',
+          borderBottom: '1px solid #E4E4E7',
+          padding: '0.85rem 0',
+          position: 'sticky',
+          top: '4.75rem',
+          zIndex: 40,
+          boxShadow: '0 4px 15px -3px rgba(0, 0, 0, 0.04)',
+        }}
+      >
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.12em', marginRight: '0.5rem' }}>
+            Our Portfolio:
+          </span>
+          <Link
+            to="/products"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#F4F4F5',
+              color: '#3F3F46',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              border: '1px solid #E4E4E7',
+              transition: 'all 140ms ease-out',
+            }}
+            className="hover:border-rose-400 hover:text-rose-800 hover:bg-rose-50"
+          >
+            Explore Products
+          </Link>
+          <Link
+            to="/services"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#F4F4F5',
+              color: '#3F3F46',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              border: '1px solid #E4E4E7',
+              transition: 'all 140ms ease-out',
+            }}
+            className="hover:border-rose-400 hover:text-rose-800 hover:bg-rose-50"
+          >
+            Explore Services
+          </Link>
+          <a
+            href="#featured-client-projects"
+            style={{
+              padding: '0.35rem 0.9rem',
+              borderRadius: '9999px',
+              backgroundColor: '#18181B',
+              color: '#FFFFFF',
+              fontSize: '0.8125rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 2px 6px rgba(24, 24, 27, 0.15)',
+            }}
+          >
+            Featured Projects
+          </a>
+        </div>
+      </nav>
+
       {/* 2x2 Grid of Featured Client Projects (Matching temp.jpeg) */}
       {(activeTab === 'all' || activeTab === 'projects') && (
         <section style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 0' }} id="featured-client-projects">
@@ -232,7 +302,7 @@ export const Portfolio: React.FC = () => {
                   gap: '0.5rem',
                   fontSize: '0.8125rem',
                   fontWeight: 700,
-                  color: '#C68A3D',
+                  color: '#99152B',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginBottom: '0.75rem',
@@ -249,16 +319,8 @@ export const Portfolio: React.FC = () => {
             </div>
 
             {/* 2x2 Card Grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: '2rem',
-                maxWidth: '1100px',
-                margin: '0 auto',
-              }}
-            >
-              {effectiveCaseStudies.map((study: any) => (
+            <div className="grid-layout-2x2">
+              {effectiveCaseStudies.slice(0, 4).map((study: any) => (
                 <div
                   key={study.id}
                   id={study.id}
@@ -313,7 +375,7 @@ export const Portfolio: React.FC = () => {
 
                   {/* Body Content */}
                   <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#C68A3D', marginBottom: '0.5rem' }}>
+                    <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#99152B', marginBottom: '0.5rem' }}>
                       {study.categories}
                     </div>
 
@@ -376,11 +438,11 @@ export const Portfolio: React.FC = () => {
 
                     <div style={{ paddingTop: '1.25rem', borderTop: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <Link
-                        to="/request-for-quote"
+                        to="/connect-with-us"
                         style={{
                           fontSize: '0.875rem',
                           fontWeight: 600,
-                          color: '#C68A3D',
+                          color: '#99152B',
                           textDecoration: 'none',
                           display: 'inline-flex',
                           alignItems: 'center',
@@ -388,7 +450,7 @@ export const Portfolio: React.FC = () => {
                         }}
                         className="hover:gap-2"
                       >
-                        <span>Request Similar Solution</span>
+                        <span>Inquire About Solution</span>
                         <ArrowRight size={14} />
                       </Link>
 
@@ -405,7 +467,7 @@ export const Portfolio: React.FC = () => {
                           color: '#475569',
                           textDecoration: 'none',
                         }}
-                        className="hover:bg-amber-50 hover:text-amber-600 hover:border-amber-400"
+                        className="hover:bg-rose-50 hover:text-rose-700 hover:border-rose-400"
                         aria-label={`Inquire about ${study.title}`}
                       >
                         <ArrowRight size={14} />
@@ -431,7 +493,7 @@ export const Portfolio: React.FC = () => {
                   gap: '0.5rem',
                   fontSize: '0.8125rem',
                   fontWeight: 700,
-                  color: '#C68A3D',
+                  color: '#99152B',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   marginBottom: '0.75rem',
@@ -448,16 +510,8 @@ export const Portfolio: React.FC = () => {
             </div>
 
             {/* 2x2 Grid of Platforms */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '2rem',
-                maxWidth: '1100px',
-                margin: '0 auto',
-              }}
-            >
-              {productsCatalog.map((product) => (
+            <div className="grid-layout-2x2">
+              {productsCatalog.slice(0, 4).map((product) => (
                 <div
                   key={product.id}
                   style={{
@@ -477,8 +531,8 @@ export const Portfolio: React.FC = () => {
                         width: '3rem',
                         height: '3rem',
                         borderRadius: '12px',
-                        backgroundColor: '#EDE9FE',
-                        color: '#7C3AED',
+                        backgroundColor: 'rgba(184, 15, 46, 0.08)',
+                        color: '#99152B',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -486,28 +540,18 @@ export const Portfolio: React.FC = () => {
                     >
                       <Cpu size={22} />
                     </div>
-                    {product.badge && (
-                      <span
-                        style={{
-                          fontSize: '0.75rem',
-                          fontWeight: 700,
-                          color: '#C68A3D',
-                          backgroundColor: '#FFFBEB',
-                          padding: '0.25rem 0.625rem',
-                          borderRadius: '9999px',
-                          border: '1px solid #FEF3C7',
-                        }}
-                      >
-                        {product.badge}
-                      </span>
-                    )}
+                    <ProductStatusBadge
+                      status={product.status || 'Under Development'}
+                      colorScheme={product.statusColor}
+                      size="sm"
+                    />
                   </div>
 
                   <h3 style={{ fontSize: '1.375rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.35rem' }}>
                     {product.name}
                   </h3>
 
-                  <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#2563EB', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#99152B', marginBottom: '1rem' }}>
                     {product.tagline}
                   </div>
 
@@ -526,7 +570,7 @@ export const Portfolio: React.FC = () => {
 
                   <div style={{ paddingTop: '1.25rem', borderTop: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Link
-                      to={`/products/${product.slug}`}
+                      to={`/products?product=${product.slug}`}
                       style={{
                         fontSize: '0.875rem',
                         fontWeight: 600,
@@ -541,8 +585,8 @@ export const Portfolio: React.FC = () => {
                       <ArrowRight size={14} />
                     </Link>
 
-                    <Button to="/request-for-quote" variant="gold" size="sm">
-                      Request Demo
+                    <Button to="/connect-with-us" variant="primary" size="sm">
+                      Schedule Demo
                     </Button>
                   </div>
                 </div>
@@ -562,8 +606,8 @@ export const Portfolio: React.FC = () => {
             Our dedicated pods can be deployed in 2 to 4 weeks. Let&apos;s discuss architecture, scope, and technical roadmap.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Button to="/request-for-quote" variant="gold" size="lg" icon={<ArrowRight size={16} />}>
-              Request Detailed Proposal
+            <Button to="/connect-with-us" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Start Project Consultation
             </Button>
             <Button to="/connect-with-us" variant="outline" size="lg">
               Book Architecture Discovery

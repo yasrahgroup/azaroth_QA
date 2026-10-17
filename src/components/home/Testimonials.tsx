@@ -88,7 +88,7 @@ export const Testimonials: React.FC = () => {
                 gap: '0.5rem',
                 fontSize: '0.8125rem',
                 fontWeight: 700,
-                color: 'var(--color-brand-gold, #F59E0B)',
+                color: '#99152B',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 marginBottom: '1rem',
@@ -110,7 +110,7 @@ export const Testimonials: React.FC = () => {
               What Our Clients{' '}
               <span
                 style={{
-                  background: 'linear-gradient(135deg, var(--color-primary, #18181B) 0%, var(--color-brand-gold, #F59E0B) 100%)',
+                  background: 'linear-gradient(135deg, #7A0C16 0%, #99152B 50%, #D3163C 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -244,9 +244,9 @@ export const Testimonials: React.FC = () => {
                     <span style={{ fontSize: '1.0625rem', fontWeight: 700, color: '#1E293B' }}>
                       {current.author}
                     </span>
-                    <div style={{ display: 'flex', gap: '2px', color: '#D4AF37' }}>
+                    <div style={{ display: 'flex', gap: '2px', color: '#D3163C' }}>
                       {Array.from({ length: current.rating }).map((_, i) => (
-                        <Star key={i} size={13} fill="#D4AF37" />
+                        <Star key={i} size={13} fill="#D3163C" />
                       ))}
                     </div>
                   </div>

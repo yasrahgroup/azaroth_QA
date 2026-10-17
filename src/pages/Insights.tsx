@@ -64,13 +64,13 @@ export const Insights: React.FC = () => {
   return (
     <div>
       <SEOHead
-        title="Resource Hub — Engineering Insights | Azaroth Tech-Hive"
+        title="Resource Hub — Engineering Insights & Publications | Azaroth Tech-Hive"
         description="Browse engineering insights on system architecture, enterprise AI, and cloud modernization, with practical technical guidance from the Azaroth Tech-Hive team."
-        canonicalPath="/technology-insights"
+        canonicalPath="/resource-hub"
       />
       {/* Page Hero */}
       <PageHeader
-        kicker="- TECHNOLOGY INSIGHTS -"
+        kicker="- RESOURCE HUB -"
         title="Engineering Insights That Move Ideas Forward"
         gradientWords={['Engineering', 'Insights', 'Ideas', 'Forward']}
         subtitle="Explore software engineering insights, architecture principles, implementation strategies, and technical guidance to help you make informed technology decisions and build better systems."

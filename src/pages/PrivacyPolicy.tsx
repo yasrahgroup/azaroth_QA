@@ -50,7 +50,7 @@ export const PrivacyPolicy: React.FC = () => {
 
                 <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>2. Information Collection & Usage</h2>
                 <p style={{ marginBottom: '1.5rem', lineHeight: 1.7 }}>
-                  Information submitted via our Request for Quote (RFQ) or Contact portals—including technical architecture notes, 
+                  Information submitted via our Contact and Engagement portals—including technical architecture notes, 
                   work emails, telephone numbers, and corporate affiliations—is utilized solely to formulate architectural scope 
                   proposals and facilitate secure communications.
                 </p>

@@ -242,7 +242,7 @@ export const InsightDetail: React.FC = () => {
           </Card>
 
           <div style={{ marginTop: '3.5rem', textAlign: 'center' }}>
-            <Button to="/request-for-quote" variant="gold" size="md">
+            <Button to="/connect-with-us" variant="primary" size="md">
               Consult with Our Principal Architects on Your Architecture
             </Button>
           </div>

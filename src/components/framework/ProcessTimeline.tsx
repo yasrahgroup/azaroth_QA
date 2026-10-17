@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import { deliveryStages } from '../../data/deliveryData';
 import { Card } from '../common/Card';
-import { Badge } from '../common/Badge';
 import { Button } from '../common/Button';
 
 export const ProcessTimeline: React.FC = () => {
@@ -40,23 +39,23 @@ export const ProcessTimeline: React.FC = () => {
                 alignItems: 'center',
                 gap: '0.625rem',
                 padding: '0.625rem 1.25rem',
-                borderRadius: 'var(--radius-lg)',
-                border: isSelected ? '1px solid var(--color-primary-maroon)' : '1px solid transparent',
-                backgroundColor: isSelected ? 'var(--color-primary-maroon)' : '#ffffff',
-                color: isSelected ? '#ffffff' : 'var(--color-text-primary)',
+                borderRadius: '9999px',
+                border: isSelected ? '1px solid #B80F2E' : '1px solid #E2E8F0',
+                background: isSelected ? 'linear-gradient(135deg, #7A0C16 0%, #B80F2E 50%, #F02B4F 100%)' : '#FFFFFF',
+                color: isSelected ? '#FFFFFF' : '#1E293B',
                 fontWeight: 700,
                 fontSize: '0.875rem',
                 cursor: 'pointer',
                 transition: 'all 200ms ease-out',
-                boxShadow: isSelected ? '0 4px 12px rgba(0, 108, 53, 0.25)' : 'var(--shadow-xs)',
+                boxShadow: isSelected ? '0 4px 14px rgba(184, 15, 46, 0.35)' : 'none',
               }}
             >
               <span style={{
                 width: '1.5rem',
                 height: '1.5rem',
                 borderRadius: '50%',
-                backgroundColor: isSelected ? '#ffffff' : 'rgba(0, 108, 53, 0.1)',
-                color: isSelected ? 'var(--color-primary-green, #006C35)' : 'var(--color-primary-green, #006C35)',
+                backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.25)' : '#F1F5F9',
+                color: isSelected ? '#FFFFFF' : '#99152B',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -80,9 +79,10 @@ export const ProcessTimeline: React.FC = () => {
             variant="glass"
             padding="lg"
             style={{
-              backgroundColor: '#ffffff',
-              border: '1px solid rgba(0, 108, 53, 0.2)',
-              boxShadow: '0 20px 40px -15px rgba(0, 108, 53, 0.08)',
+              backgroundColor: '#FFFFFF',
+              border: '1px solid rgba(226, 232, 240, 0.9)',
+              borderRadius: '1.5rem',
+              boxShadow: '0 20px 40px -15px rgba(15, 23, 42, 0.08)',
             }}
           >
             {/* Stage Header */}
@@ -98,9 +98,17 @@ export const ProcessTimeline: React.FC = () => {
             }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                  <Badge variant="gold">
+                  <span style={{
+                    padding: '0.25rem 0.75rem',
+                    borderRadius: '9999px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    backgroundColor: '#FFF1F2',
+                    color: '#99152B',
+                    border: '1px solid #FFE4E6',
+                  }}>
                     Stage 0{stage.stageNumber}
-                  </Badge>
+                  </span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: 'var(--color-text-muted)', fontSize: '0.875rem', fontWeight: 600 }}>
                     <Clock size={15} />
                     <span>Duration: {stage.duration}</span>
@@ -111,12 +119,12 @@ export const ProcessTimeline: React.FC = () => {
                   {stage.title}
                 </h2>
                 
-                <p style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--color-primary-maroon)' }}>
+                <p style={{ fontSize: '1rem', fontWeight: 600, color: '#99152B' }}>
                   {stage.tagline}
                 </p>
               </div>
 
-              <Button to="/request-for-quote" variant="gold" size="sm" icon={<ArrowRight size={15} />}>
+              <Button to="/connect-with-us" variant="primary" size="sm" icon={<ArrowRight size={15} />}>
                 Engage Pod for this Stage
               </Button>
             </div>
@@ -180,10 +188,10 @@ export const ProcessTimeline: React.FC = () => {
                 backgroundColor: 'rgba(250, 250, 247, 0.8)',
                 padding: '1.5rem',
                 borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(0, 108, 53, 0.2)',
+                border: '1px solid rgba(226, 232, 240, 0.9)',
               }}>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--color-dark-forest, #012411)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <ShieldCheck size={18} style={{ color: '#006C35' }} />
+                <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1E293B', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <ShieldCheck size={18} style={{ color: '#059669' }} />
                   <span>Verified Quality Gates</span>
                 </h4>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>

@@ -82,8 +82,8 @@ const detailedServices: ServiceDetail[] = [
     title: 'IT Consulting',
     category: 'Strategic Technology Advisory',
     icon: <Settings size={24} />,
-    iconBg: '#FEF3C7',
-    iconColor: '#D97706',
+    iconBg: '#FFE4E6',
+    iconColor: '#B80F2E',
     description: 'Strategic technology consulting to drive efficiency and growth. Modernizing legacy monolithic architectures into decoupled, cloud-native services with minimal operational disruption.',
     deliverables: [
       'Monolith-to-microservices decoupling roadmaps',
@@ -144,21 +144,21 @@ export const Services: React.FC = () => {
 
   const effectiveServices = (cmsServices && cmsServices.length > 0)
     ? cmsServices.map((s, idx) => {
-        const match = detailedServices.find(ds => ds.id === s.slug || ds.id === s.id);
-        return {
-          id: s.slug || s.id || `srv-${idx}`,
-          title: s.title,
-          category: (s as any).category || match?.category || 'Enterprise Engineering',
-          icon: getServiceIcon(s.iconName || s.icon_name || match?.title),
-          iconBg: match?.iconBg || (idx % 2 === 0 ? '#EDE9FE' : '#D1FAE5'),
-          iconColor: match?.iconColor || (idx % 2 === 0 ? '#7C3AED' : '#059669'),
-          description: s.description || s.shortDescription || s.summary || match?.description || '',
-          deliverables: s.capabilities && Array.isArray(s.capabilities) && s.capabilities.length > 0
-            ? s.capabilities.map((c: any) => typeof c === 'string' ? c : (c.title || c.description || JSON.stringify(c)))
-            : (match?.deliverables || ['End-to-end architecture delivery', 'Automated test suite coverage', 'Dedicated sprint cadence']),
-          sla: (s as any).sla || match?.sla || 'Standard Enterprise SLA',
-        };
-      })
+      const match = detailedServices.find(ds => ds.id === s.slug || ds.id === s.id);
+      return {
+        id: s.slug || s.id || `srv-${idx}`,
+        title: s.title,
+        category: (s as any).category || match?.category || 'Enterprise Engineering',
+        icon: getServiceIcon(s.iconName || s.icon_name || match?.title),
+        iconBg: match?.iconBg || (idx % 2 === 0 ? '#EDE9FE' : '#D1FAE5'),
+        iconColor: match?.iconColor || (idx % 2 === 0 ? '#7C3AED' : '#059669'),
+        description: s.description || s.shortDescription || s.summary || match?.description || '',
+        deliverables: s.capabilities && Array.isArray(s.capabilities) && s.capabilities.length > 0
+          ? s.capabilities.map((c: any) => typeof c === 'string' ? c : (c.title || c.description || JSON.stringify(c)))
+          : (match?.deliverables || ['End-to-end architecture delivery', 'Automated test suite coverage', 'Dedicated sprint cadence']),
+        sla: (s as any).sla || match?.sla || 'Standard Enterprise SLA',
+      };
+    })
     : detailedServices;
 
   return (
@@ -177,8 +177,8 @@ export const Services: React.FC = () => {
         subtitle="We offer end-to-end technology services to help you build, optimize and scale your digital presence with enterprise performance guarantees."
         actions={
           <>
-            <Button to="/request-for-quote" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
-              Request Capability Quote
+            <Button to="/connect-with-us" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Schedule Technical Discovery
             </Button>
             <Button to="/connect-with-us" variant="outline" size="lg">
               Book Architecture Discovery
@@ -256,7 +256,7 @@ export const Services: React.FC = () => {
                   </span>
                 </div>
 
-                <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#C68A3D', marginBottom: '0.35rem' }}>
+                <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: '#99152B', marginBottom: '0.35rem' }}>
                   {service.category}
                 </div>
 
@@ -285,11 +285,11 @@ export const Services: React.FC = () => {
 
                 <div style={{ paddingTop: '1.25rem', borderTop: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <Link
-                    to="/request-for-quote"
+                    to="/connect-with-us"
                     style={{
                       fontSize: '0.875rem',
                       fontWeight: 600,
-                      color: '#C68A3D',
+                      color: '#99152B',
                       textDecoration: 'none',
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -324,8 +324,8 @@ export const Services: React.FC = () => {
             Talk to an Azaroth Techhive engineering architect today. We provide fixed-scope estimates, technology audits, and rapid pod kickoffs.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <Button to="/request-for-quote" variant="gold" size="lg" icon={<ArrowRight size={16} />}>
-              Get Started with an RFQ
+            <Button to="/connect-with-us" variant="primary" size="lg" icon={<ArrowRight size={16} />}>
+              Schedule Consultation
             </Button>
             <Button to="/connect-with-us" variant="outline" size="lg">
               Contact Sales Team

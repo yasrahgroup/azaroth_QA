@@ -400,7 +400,7 @@ async function initCmsDatabase() {
             badge: 'Engineering Tomorrow’s Autonomous Enterprise',
             title: 'Enterprise Software Engineering for Complex Systems',
             subtitle: 'We engineer mission-critical digital systems, resilient microservice ecosystems, high-availability software platforms, and dedicated engineering pods for global enterprises.',
-            primaryCtaText: 'Explore Solutions',
+            primaryCtaText: 'Explore Our Portfolio',
             primaryCtaLink: '/products',
             secondaryCtaText: 'Request a Quote',
             secondaryCtaLink: '/request-for-quote',
